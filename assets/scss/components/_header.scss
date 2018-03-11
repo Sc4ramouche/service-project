@@ -27,6 +27,10 @@
     background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.2);
   }
+
+  &__user {
+    display: none;
+  }
 }
 
 .logo {
@@ -71,6 +75,7 @@
 
   &__button {
     outline: none;
+    display: none;
   }
 
   &__button:hover {
@@ -84,7 +89,8 @@
 
 .register {
 
-  &__remember {
+  &__agree {
+    display: inline-block;
     margin-bottom: 16px;
   }
 }
@@ -156,8 +162,6 @@
   }
 }
 
-
-
 @keyframes fadeEffect {
   from {opacity: 0;}
   to {opacity: 1;}
@@ -165,4 +169,8 @@
 
 .active {
   background-color: #46ACC2;
+}
+
+.visible {
+  display: inline-block;
 }

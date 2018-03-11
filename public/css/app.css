@@ -44,7 +44,8 @@ table {
   color: antiquewhite;
   border: 2px solid antiquewhite;
   border-radius: 12px;
-  outline: none; }
+  outline: none;
+  cursor: pointer; }
 
 .form__text {
   display: block;
@@ -72,6 +73,25 @@ table {
   border-radius: 0;
   cursor: pointer; }
 
+.error {
+  font-size: 14px;
+  color: #b40000;
+  display: inline-block;
+  margin-left: 24px; }
+
+.register__error-agree {
+  text-align: center;
+  margin-bottom: 24px; }
+
+.login__error-email,
+.login__error-password,
+.register__error-username,
+.register__error-email,
+.register__error-password,
+.register__error-match,
+.register__error-agree {
+  display: none; }
+
 .header__container {
   display: flex;
   justify-content: space-around;
@@ -95,6 +115,9 @@ table {
   overflow: auto;
   background-color: black;
   background-color: rgba(0, 0, 0, 0.2); }
+
+.header__user {
+  display: none; }
 
 .logo__heading {
   font-family: Timmana-Regular;
@@ -121,7 +144,8 @@ table {
   text-decoration: none; }
 
 .login__button {
-  outline: none; }
+  outline: none;
+  display: none; }
 
 .login__button:hover {
   cursor: pointer; }
@@ -129,7 +153,8 @@ table {
 .login__remember {
   margin-bottom: 16px; }
 
-.register__remember {
+.register__agree {
+  display: inline-block;
   margin-bottom: 16px; }
 
 .modal__content {
@@ -193,6 +218,9 @@ table {
 
 .active {
   background-color: #46ACC2; }
+
+.visible {
+  display: inline-block; }
 
 .clearfix {
   content: "";

@@ -1,0 +1,21 @@
+.error {
+  font-size: 14px;
+  color: rgb(180, 0, 0);
+  display: inline-block;
+  margin-left: 24px;
+}
+
+.register__error-agree {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.login__error-email,
+.login__error-password,
+.register__error-username,
+.register__error-email,
+.register__error-password,
+.register__error-match,
+.register__error-agree {
+  display: none;
+}

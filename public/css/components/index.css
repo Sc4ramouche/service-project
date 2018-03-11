@@ -22,6 +22,9 @@
   background-color: black;
   background-color: rgba(0, 0, 0, 0.2); }
 
+.header__user {
+  display: none; }
+
 .logo__heading {
   font-family: Timmana-Regular;
   color: antiquewhite;
@@ -47,7 +50,8 @@
   text-decoration: none; }
 
 .login__button {
-  outline: none; }
+  outline: none;
+  display: none; }
 
 .login__button:hover {
   cursor: pointer; }
@@ -55,7 +59,8 @@
 .login__remember {
   margin-bottom: 16px; }
 
-.register__remember {
+.register__agree {
+  display: inline-block;
   margin-bottom: 16px; }
 
 .modal__content {
@@ -119,3 +124,6 @@
 
 .active {
   background-color: #46ACC2; }
+
+.visible {
+  display: inline-block; }
