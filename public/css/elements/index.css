@@ -1,0 +1,35 @@
+.login__button--usual {
+  padding: 6px 16px;
+  font-family: "palanquindark-regular";
+  font-size: 16px;
+  background-color: #EF3E36;
+  color: antiquewhite;
+  border: 2px solid antiquewhite;
+  border-radius: 12px;
+  outline: none; }
+
+.form__text {
+  display: block;
+  width: 100%;
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  border: none;
+  border-bottom: 1px dashed #666666;
+  outline: none;
+  font-family: "palanquindark-regular";
+  font-size: 14px;
+  color: #666666; }
+
+.form__label {
+  font-size: 18px;
+  color: #666666;
+  display: inline-block; }
+
+.form__submit-btn {
+  display: block;
+  margin: 0 auto;
+  font-size: 18px;
+  width: 20%;
+  border: none;
+  border-radius: 0;
+  cursor: pointer; }

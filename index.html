@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="public/css/app.css">
+  <link rel="stylesheet" href="public/fonts/fonts.css">
+  <title>Beaty</title>
+</head>
+
+<body>
+  <header class="header">
+    <div class="header__container">
+      <div class="header__logo">
+        <h1 class="logo__heading">Beaty</h1>
+        <p class="logo__para">please yourself</p>
+      </div>
+      <nav class="header__nav">
+        <ul class="nav__list">
+          <a href="#" class="nav__list-link">
+            <li class="nav__list-item">Home</li>
+          </a>
+          <a href="#" class="nav__list-link">
+            <li class="nav__list-item">About</li>
+          </a>
+          <a href="#" class="nav__list-link">
+            <li class="nav__list-item">Gallery</li>
+          </a>
+          <a href="#" class="nav__list-link">
+            <li class="nav__list-item">Contact</li>
+          </a>
+        </ul>
+      </nav>
+      <div class="header__login">
+        <button type="button" class="login__button login__button--usual">Login</button>
+        <div class="header__modal">
+          <div class="modal__content">
+            <span class="modal__close">&times;</span>
+            <div class="modal__tabs">
+              <button class="tabs__button" id="defaultOpen" onclick="openTab(event, 'modal__login')">Login</button>
+              <button class="tabs__button" onclick="openTab(event, 'modal__register')">Register</button>
+            </div>
+
+            <div class="modal__login tabs-item">
+              <label for="login__email" class="form__label">Username or Email:</label>
+              <input type="email" class="login__email form__text" id="login__email" placeholder="joedoe@mail.com" required>
+
+              <label for="login__password" class="form__label">Password:</label>
+              <input type="password" class="login__password form__text" placeholder="pass" required>
+
+              <input type="checkbox" class="login__remember" id="login__remember">
+              <label for="login__remember" class="form__label">Remember me?</label>
+
+              <input type="submit" class="login__submit login__button--usual form__submit-btn" value="Login">
+            </div>
+
+            <div class="modal__register tabs-item">
+              <label for="register__username" class="form__label">Username:</label>
+              <input type="text" class="register__username form__text" id="register__username" placeholder="myusername" required>
+              
+              <label for="register__email" class="form__label">Email adress:</label>
+              <input type="email" class="register__email form__text" id="register__email" placeholder="joedoe@mail.com" required>
+              
+              <label for="register__pasword" class="form__label">Password:</label>
+              <input type="password" class="register__password form__text" id="register__password" placeholder="pass" required>
+              
+              <label for="register__password-repeat" class="form__label">Repeat password:</label>
+              <input type="password" class="register__password-repeat form__text" id="register__password-repeat" placeholder="repeat" required>
+
+              <input type="checkbox" class="register__remember" id="register__remember">
+              <label for="register__remember" class="form__label">I accept the terms of use</label>
+
+              <input type="submit" class="register__submit login__button--usual form__submit-btn" value="Register">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <script src="public/js/app.js"></script>
+  <script src="public/js/modal.js"></script>
+  <script src="public/js/tabs.js"></script>    
+  <script>
+    document.getElementById("defaultOpen").click();
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+@font-face {
+  font-family: 'DancingScript-Regular';
+  src: url("./DancingScript-Regular.ttf");
+  src: local("DancingScript-Regular"), url("./DancingScript-Regular.ttf") format("ttf"), url("./DancingScript-Regular.ttf") format("truetype"); }
+
+@font-face {
+  font-family: 'palanquindark-regular';
+  src: url("./palanquindark-regular.ttf");
+  src: local("palanquindark-regular"), url("./palanquindark-regular.ttf") format("ttf"), url("./palanquindark-regular.ttf") format("truetype"); }
+
+@font-face {
+  font-family: 'Timmana-Regular';
+  src: url("./Timmana-Regular.ttf");
+  src: local("Timmana-Regular"), url("./Timmana-Regular.ttf") format("ttf"), url("./Timmana-Regular.ttf") format("truetype"); }
