@@ -99,7 +99,7 @@ const session = (function createSession() {
     if ( correctPassword && usernameExists ) {
       let headerUser = document.getElementsByClassName('user__name')[0];
       headerUser.textContent = userNameOrEmail;
-      localStorage.logged = true;
+      localStorage.logged = userNameOrEmail;
       window.location.href = "account.html";
     }
 

@@ -2,9 +2,10 @@ function setHeaderUsername() {
   let user = document.getElementsByClassName('header__user')[0];
   let login = document.getElementsByClassName('login__button')[0];
   let userName = document.getElementsByClassName('user__name')[0];
-  if ( localStorage.logged == "true" ) {
+  if ( localStorage.logged ) {
     user.style.display = "block";
     login.style.display = "none";
+    userName.textContent = "Greetings, " + localStorage.logged + "!";
   } else {
     user.style.display = "none";
     login.style.display = "block";
@@ -14,7 +15,7 @@ function setHeaderUsername() {
 setHeaderUsername();
 
 function signOut() { 
-  localStorage.logged = false;
+  localStorage.logged = "";
   setHeaderUsername();
   console.log('l');
 }
