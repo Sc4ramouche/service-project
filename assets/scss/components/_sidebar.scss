@@ -1,0 +1,42 @@
+.sidebar {
+  width: 40%;
+  padding: 16px;
+  padding-bottom: 0;
+  background-color:	#A8DCD1;
+
+  &__heading {
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 20px;
+  }
+
+  &__service {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 32px;
+  }
+}
+
+.service {
+
+  &__text {
+    padding-right: 16px;
+  }
+
+  &__name {
+    margin-bottom: 12px;
+    font-size: 16px;
+  }
+
+  &__description {
+    font-size: 14px;
+  }
+}
+
+.image {
+
+  &__item {
+    max-width: 280px;
+    border-radius: 16px;
+  }
+}

@@ -5,7 +5,8 @@
   padding-top: 16px; }
 
 .header__nav {
-  padding-top: 22px; }
+  padding-top: 22px;
+  flex-grow: 0; }
 
 .header__login {
   padding-top: 12px; }
@@ -42,12 +43,15 @@
 
 .nav__list-item {
   display: inline-block;
-  margin-right: 24px;
   font-size: 20px;
   color: white; }
 
 .nav__list-link {
-  text-decoration: none; }
+  text-decoration: none;
+  margin-right: 24px; }
+
+.nav__list-link:last-child {
+  margin-right: 0; }
 
 .login__button {
   outline: none;
@@ -63,36 +67,44 @@
   display: inline-block;
   margin-bottom: 16px; }
 
-.modal__content {
-  position: relative;
-  background-color: #fefefe;
-  margin: 10% auto;
-  padding: 16px 40px;
-  padding-top: 32px;
-  border: 1px solid #888;
-  width: 50%; }
-
-.modal__close {
-  color: #aaa;
-  position: absolute;
-  display: block;
-  top: 4px;
-  right: 14px;
-  font-size: 28px;
-  font-weight: bold; }
-
-.modal__close:hover, .modal__close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer; }
-
-.modal__tabs {
-  overflow: hidden;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  text-align: center;
-  margin-bottom: 24px; }
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: black;
+  background-color: rgba(0, 0, 0, 0.2); }
+  .modal__content {
+    position: relative;
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 16px 40px;
+    padding-top: 32px;
+    border: 1px solid #888;
+    width: 50%; }
+  .modal__close {
+    color: #aaa;
+    position: absolute;
+    display: block;
+    top: 4px;
+    right: 14px;
+    font-size: 28px;
+    font-weight: bold; }
+  .modal__close:hover, .modal__close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer; }
+  .modal__tabs {
+    overflow: hidden;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    margin-bottom: 24px; }
 
 .tabs__button {
   background-color: inherit;
@@ -127,3 +139,63 @@
 
 .visible {
   display: inline-block; }
+
+.user__name {
+  display: inline-block;
+  color: antiquewhite;
+  margin-right: 16px; }
+
+.sidebar {
+  width: 40%;
+  padding: 16px;
+  padding-bottom: 0;
+  background-color: #A8DCD1; }
+  .sidebar__heading {
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 20px; }
+  .sidebar__service {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 32px; }
+
+.service__text {
+  padding-right: 16px; }
+
+.service__name {
+  margin-bottom: 12px;
+  font-size: 16px; }
+
+.service__description {
+  font-size: 14px; }
+
+.image__item {
+  max-width: 280px;
+  border-radius: 16px; }
+
+.account {
+  position: relative;
+  background-color: #DBB4AD;
+  display: flex;
+  justify-content: space-between; }
+  .account__container {
+    padding: 16px;
+    padding-left: 32px; }
+  .account__heading {
+    margin-bottom: 16px; }
+
+.table {
+  margin-bottom: 16px; }
+
+.previous__table,
+.table__cell {
+  border: 1px solid black;
+  padding: 8px; }
+
+.previous__table-header {
+  padding-bottom: 16px; }
+
+.phone__hint {
+  display: block;
+  font-size: 14px;
+  padding: 2px; }

@@ -1,0 +1,35 @@
+.account {
+  position: relative;
+  background-color: #DBB4AD;
+  display: flex;
+  justify-content: space-between;
+
+  &__container {
+    padding: 16px;
+    padding-left: 32px;
+  }
+
+  &__heading {
+    margin-bottom: 16px;
+  }
+}
+
+.table {
+  margin-bottom: 16px;;
+}
+
+.previous__table,
+.table__cell {
+  border: 1px solid black;
+  padding: 8px;
+}
+
+.previous__table-header {
+  padding-bottom: 16px;
+}
+
+.phone__hint {
+  display: block;
+  font-size: 14px;
+  padding: 2px;
+}

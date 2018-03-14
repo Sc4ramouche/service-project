@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
   <link rel="stylesheet" href="public/fonts/fonts.css">
   <title>Beaty</title>
 </head>
+
 <body>
   <header class="header">
     <div class="header__container">
@@ -64,20 +66,20 @@
               <label for="register__username" class="form__label username__label-register">Username:</label>
               <p class="register__error-username error">Sorry, this username is already in use!</p>
               <input type="text" class="register__username form__text" id="register__username" placeholder="myusername" required>
-              
+
               <label for="register__email" class="form__label email__label-register">Email adress:</label>
               <p class="register__error-email error">Sorry, this Email is already in use!</p>
               <input type="email" class="register__email form__text" id="register__email" placeholder="joedoe@mail.com" required>
-              
+
               <label for="register__pasword" class="form__label password__label-register">Password:</label>
               <p class="register__error-password error">No user with such Email or username!</p>
               <input type="password" class="register__password form__text" id="register__password" placeholder="pass" required>
-              
+
               <label for="register__password-repeat" class="form__label password-repeat__label-register">Repeat password:</label>
               <p class="register__error-match error">Password doesn't match!</p>
               <input type="password" class="register__password-repeat form__text" id="register__password-repeat" placeholder="repeat" required>
 
-              <input type="checkbox" class="register__agree" id="register__agree">              
+              <input type="checkbox" class="register__agree" id="register__agree">
               <label for="register__agree" class="form__label agree__label-register">I accept the terms of use</label>
               <p class="register__error-agree error">You must accept the terms of use!</p>
 
@@ -89,15 +91,141 @@
     </div>
   </header>
 
-  <h1>Welcome!</h1>
+  <section class="account">
 
+    <div class="account__container">
+
+      <h3 class="account__heading">Upcoming visits</h3>
+      <table class="upcoming__table table">
+        <tr class="upcoming__table-row">
+          <th class="upcoming__table-header table__cell">Date</th>
+          <th class="upcoming__table-header table__cell">Time</th>
+          <th class="upcoming__table-header table__cell">Services</th>
+          <th class="upcoming__table-header table__cell">Price</th>
+        </tr>
+        <tr class="upcoming__table-row">
+          <td class="upcoming__table-position table__cell">March 8, 2018</td>
+          <td class="upcoming__table-position table__cell">5 PM</td>
+          <td class="upcoming__table-position table__cell">Massage therapies</td>
+          <td class="upcoming__table-position table__cell">100$</td>
+        </tr>
+      </table>
+
+      <h3 class="account__heading">Show your previously ordered services</h3>
+      <table class="previous__table table">
+        <tr class="previous__table-row">
+          <th class="previous__table-header table__cell">Date</th>
+          <th class="previous__table-header table__cell">Services</th>
+        </tr>
+        <tr class="previous__table-row">
+          <td class="previous__table-position table__cell">March 8, 2018</td>
+          <td class="previous__table-position table__cell">Massage therapies</td>
+        </tr>
+      </table>
+
+      <button type="button" class="reserve__button login__button--usual">Reserve your SPA!</button>
+      <div class="reserve__modal modal">
+        <div class="modal__content">
+          <span class="modal__close">&times;</span>
+          <form action="POST">
+
+            <label for="reserve__service" class="form__label service__label-reserve">Choose your service:</label>
+            <p class="reserve__error-service error">No</p>
+            <select class="reserve__service form__text" id="reserve__service" required>
+              <option value="massage">Massage Therapy — 50$</option>
+              <option value="massage">Facials — 25$</option>
+              <option value="massage">Body Treatments — 100$</option>
+              <option value="massage">Makeup & Waxing 50$</option>
+            </select>
+
+            <label for="reserve__date" class="form__label date__label-reserve">Date:</label>
+            <p class="reserve__error-workday error">Sorry, you can choose workdays only</p>
+            <input id="date" type="date" class="reserve__date form__text" id="reserve__date" value="2018-03-29" min="" max="">
+
+            <label for="reserve__time" class="form__label time__label-reserve">Time:</label>
+            <p class="reserve__error-time error">Sorry, you can choose workdays only</p>
+            <select class="reserve__time form__text" id="reserve__time">
+              <option value="10">10:00</option>
+              <option value="10">11:00</option>
+              <option value="10">12:00</option>
+              <option value="10">13:00</option>
+            </select>
+
+            <label for="reserve__phone" class="form__label phone__label-reserve">Your phone number:
+              <span class="phone__hint">*format: 8 (900) 111-22-22</span>
+            </label>
+            <p class="reserve__error-phone error">No user with such Email or username!</p>
+            <input type="tel" class="reserve__phone form__text" id="reserve__phone" placeholder="8 (900) 111-22-22" pattern="^\d\s[\(]\d{3}[\)]\s\d{3}[\-]\d{2}[\-]\d{2}$"
+              required>
+
+            <input type="submit" value="Reserve">
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <aside class="sidebar">
+      <h2 class="sidebar__heading">Available services</h2>
+
+      <div class="sidebar__service">
+        <div class="service__text">
+          <h4 class="service__name">Massage Therapies</h4>
+          <p class="service__description">A powerful ingredient for overall wellness, massage therapies decrease anxiety, enhance quality of sleep and improve
+            energy and healing.</p>
+        </div>
+        <div class="service__image">
+          <img src="public/img/massage.jpg" alt="Massage Therapy" class="image__item img__item-massage">
+        </div>
+      </div>
+
+      <div class="sidebar__service">
+        <div class="service__text">
+          <h4 class="service__name">Facial</h4>
+          <p class="service__description">Rejuvenating facials include cleansing, toning, exfoliation, extractions (optional), facial massage, and hand and
+            foot hydration.</p>
+        </div>
+        <div class="service__image">
+          <img src="public/img/facial.jpg" alt="Facial" class="image__item img__item-facial">
+        </div>
+      </div>
+
+      <div class="sidebar__service">
+        <div class="service__text">
+          <h4 class="service__name">Body Treatments</h4>
+          <p class="service__description">A powerful ingredient for overall wellness, massage therapies decrease anxiety, enhance quality of sleep and improve
+            energy and healing.</p>
+        </div>
+        <div class="service__image">
+          <img src="public/img/body.jpg" alt="Body Treatments" class="image__item img__item-body">
+        </div>
+      </div>
+
+      <div class="sidebar__service">
+        <div class="service__text">
+          <h4 class="service__name">Makeup & Waxing</h4>
+          <p class="service__description">Our full-service spa offers makeup and waxing services.</p>
+        </div>
+        <div class="service__image">
+          <img src="public/img/makeup.jpg" alt="Makeup and Waxing" class="image__item img__item-makeup">
+        </div>
+      </div>
+    </aside>
+
+  </section>
+
+  <script src="public/js/service_functions.js"></script>
+  <script src="public/js/add_setObj_to_Storage_prototype.js"></script>
   <script src="public/js/set_username_in_header.js"></script>
   <script src="public/js/app.js"></script>
   <script src="public/js/modal.js"></script>
-  <script src="public/js/tabs.js"></script>    
+  <script src="public/js/reserve_modal.js"></script>
+  <script src="public/js/tabs.js"></script>
+
   <script>
     document.getElementById("defaultOpen").click();
   </script>
 
 </body>
+
 </html>

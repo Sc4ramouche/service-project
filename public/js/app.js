@@ -1,10 +1,4 @@
-Storage.prototype.setObj = function (key, obj) {
-  return this.setItem(key, JSON.stringify(obj, null, 2))
-}
-Storage.prototype.getObj = function (key) {
-  return JSON.parse(this.getItem(key))
-}
-
+/*eslint wrap-iife: false*/
 const session = (function createSession() {
 
   function removeErrors() {
@@ -29,9 +23,9 @@ const session = (function createSession() {
 
     storageArray.forEach((value, index) => {
       for (let key in value) {
-        if (key === "username") uniqueUser = checkUsername(userName, value[key]);
-        if (key === "email") uniqueEmail = checkEmail(userEmail, value[key]);
-        if (key === "password") passwordMatch = checkMatch(userPassword);
+        if (key === "username") uniqueUser = (userName === value[key]) ? false : true;
+        if (key === "email") uniqueEmail = (userEmail === value[key]) ? false : true;
+        if (key === "password") passwordMatch = checkPasswordMatch(userPassword);
       }
     });
 
@@ -40,16 +34,7 @@ const session = (function createSession() {
     console.log(passwordMatch);
     console.log(agreement);
 
-    function checkUsername(value, usr) {
-      if (value === usr) return false;
-      return true;
-    }
-
-    function checkEmail(value, email) {
-      return (value === email) ? false : true;
-    }
-
-    function checkMatch(value) {
+    function checkPasswordMatch(value) {
       let pswMatch = document.getElementsByClassName('register__password-repeat')[0].value;
       return (value === pswMatch) ? true : false;
     }
@@ -69,11 +54,11 @@ const session = (function createSession() {
     let correctPassword = false;
     let rememberUser = 0;
 
-    for (let i = 0; i < storageArray.length; i++) {
-      for (let key in storageArray[i]) {
+    for (let userId = 0; userId < storageArray.length; userId++) {
+      for (let key in storageArray[userId]) {
         if (key === "username" || key === "email") {
-          usernameExists = checkUsernameExists(userNameOrEmail, storageArray[i][key]) || checkEmailExists(userNameOrEmail, storageArray[i][key]);
-          rememberUser = i;
+          usernameExists = checkUsernameExists(userNameOrEmail, storageArray[userId][key]) || checkEmailExists(userNameOrEmail, storageArray[userId][key]);
+          rememberUser = userId;
           if (usernameExists) break;
         }
       }
@@ -96,7 +81,7 @@ const session = (function createSession() {
       error.style.display = "inline-block";
     }
 
-    if ( correctPassword && usernameExists ) {
+    if (correctPassword && usernameExists ) {
       let headerUser = document.getElementsByClassName('user__name')[0];
       headerUser.textContent = userNameOrEmail;
       localStorage.logged = userNameOrEmail;
@@ -131,7 +116,7 @@ const session = (function createSession() {
     let userEmail = document.getElementsByClassName('register__email')[0].value;
     let userPassword = document.getElementsByClassName('register__password')[0].value;
 
-    let userItem = {
+    const userItem = {
       username: userName,
       email: userEmail,
       password: userPassword
@@ -149,6 +134,19 @@ const session = (function createSession() {
     }
   }
 
+  function makeReservation() {
+
+  }
+
+  function setInputDate() {
+    let inputDate = document.getElementsByClassName('reserve__date')[0];
+    let currentDate = new Date();
+    let plus30Days = new Date(currentDate.setDate(currentDate.getDate() + 30));
+    // let maxDate = transformDateForInput(new Date());
+    inputDate.setAttribute('min', String( transformDateForInput(new Date()) ));
+    inputDate.setAttribute('max', String( transformDateForInput(plus30Days)));
+  }
+
   function redirect() {
     window.location.replace("account.html");
   }
@@ -157,12 +155,14 @@ const session = (function createSession() {
     createUser: createUser,
     checkRegister: checkRegister,
     checkLogin: checkLogin,
-    redirect: redirect
+    redirect: redirect,
+    setInputDate: setInputDate
   };
 
 })();
 
 const loginBtn = document.getElementsByClassName('login__submit')[0];
 loginBtn.addEventListener('click', session.checkLogin);
-// localStorage.setObj('currentUser', localStorage.getObj('services')[0])
-// localStorage.setObj('currentUser', Object.assign(localStorage.getObj('currentUser'), {id: 11}))
+
+session.setInputDate();
+

@@ -18,6 +18,7 @@ function signOut() {
   localStorage.logged = "";
   setHeaderUsername();
   console.log('l');
+  window.location.replace("index.html");
 }
 
 let signOff = document.getElementsByClassName('sign-out__button')[0];
