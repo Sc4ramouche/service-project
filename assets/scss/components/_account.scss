@@ -18,7 +18,6 @@
   margin-bottom: 16px;;
 }
 
-.previous__table,
 .table__cell {
   border: 1px solid black;
   padding: 8px;
@@ -32,4 +31,19 @@
   display: block;
   font-size: 14px;
   padding: 2px;
+}
+
+.reserve__button {
+  margin-bottom: 16px;
+}
+
+.cancel__button {
+  display: block;
+  text-decoration: none;
+  margin-left: 16px;
+  color: black;
+  display: inline-block;
+  background-color: lightseagreen;
+  border-radius: 8px;
+  padding: 0px 16px;;
 }

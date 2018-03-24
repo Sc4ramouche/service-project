@@ -13,10 +13,10 @@
 <body>
   <header class="header">
     <div class="header__container">
-      <div class="header__logo">
+      <a href="./index.html" class="header__logo">
         <h1 class="logo__heading">Beaty</h1>
         <p class="logo__para">please yourself</p>
-      </div>
+      </a>
       <nav class="header__nav">
         <ul class="nav__list">
           <a href="#" class="nav__list-link">
@@ -36,7 +36,7 @@
       <div class="header__login">
         <button type="button" class="login__button login__button--usual visible">Login</button>
         <div class="header__user">
-          <p class="user__name"></p>
+          <a href="./account.html" class="user__name"></a>
           <button type="button" class="sign-out__button login__button--usual">Sign out</button>
         </div>
         <div class="header__modal">
@@ -72,7 +72,7 @@
               <input type="email" class="register__email form__text" id="register__email" placeholder="joedoe@mail.com" required>
 
               <label for="register__pasword" class="form__label password__label-register">Password:</label>
-              <p class="register__error-password error">No user with such Email or username!</p>
+              <p class="register__error-password error">Password has to be at least 5 characters!</p>
               <input type="password" class="register__password form__text" id="register__password" placeholder="pass" required>
 
               <label for="register__password-repeat" class="form__label password-repeat__label-register">Repeat password:</label>
@@ -94,36 +94,24 @@
   <section class="account">
 
     <div class="account__container">
+        <h3 class="account__heading heading__upcoming">Upcoming visits</h3>
+        <table class="upcoming__table table">
+          <tr class="upcoming__table-row">
+            <th class="upcoming__table-header table__cell">Date</th>
+            <th class="upcoming__table-header table__cell">Services</th>
+          </tr>
+        </table>
 
-      <h3 class="account__heading">Upcoming visits</h3>
-      <table class="upcoming__table table">
-        <tr class="upcoming__table-row">
-          <th class="upcoming__table-header table__cell">Date</th>
-          <th class="upcoming__table-header table__cell">Time</th>
-          <th class="upcoming__table-header table__cell">Services</th>
-          <th class="upcoming__table-header table__cell">Price</th>
-        </tr>
-        <tr class="upcoming__table-row">
-          <td class="upcoming__table-position table__cell">March 8, 2018</td>
-          <td class="upcoming__table-position table__cell">5 PM</td>
-          <td class="upcoming__table-position table__cell">Massage therapies</td>
-          <td class="upcoming__table-position table__cell">100$</td>
-        </tr>
-      </table>
-
-      <h3 class="account__heading">Show your previously ordered services</h3>
-      <table class="previous__table table">
-        <tr class="previous__table-row">
-          <th class="previous__table-header table__cell">Date</th>
-          <th class="previous__table-header table__cell">Services</th>
-        </tr>
-        <tr class="previous__table-row">
-          <td class="previous__table-position table__cell">March 8, 2018</td>
-          <td class="previous__table-position table__cell">Massage therapies</td>
-        </tr>
-      </table>
+        <h3 class="account__heading heading__previous">Previously ordered services</h3>
+        <table class="previous__table table">
+          <tr class="previous__table-row">
+            <th class="previous__table-header table__cell">Date</th>
+            <th class="previous__table-header table__cell">Services</th>
+          </tr>
+        </table>
 
       <button type="button" class="reserve__button login__button--usual">Reserve your SPA!</button>
+
       <div class="reserve__modal modal">
         <div class="modal__content">
           <span class="modal__close">&times;</span>
@@ -132,31 +120,31 @@
             <label for="reserve__service" class="form__label service__label-reserve">Choose your service:</label>
             <p class="reserve__error-service error">No</p>
             <select class="reserve__service form__text" id="reserve__service" required>
-              <option value="massage">Massage Therapy — 50$</option>
-              <option value="massage">Facials — 25$</option>
-              <option value="massage">Body Treatments — 100$</option>
-              <option value="massage">Makeup & Waxing 50$</option>
+              <option value="Massage">Massage Therapy — 50$</option>
+              <option value="Facials">Facials — 25$</option>
+              <option value="Body Treatments">Body Treatments — 100$</option>
+              <option value="Makeup & Waxing">Makeup & Waxing 50$</option>
             </select>
 
             <label for="reserve__date" class="form__label date__label-reserve">Date:</label>
-            <p class="reserve__error-workday error">Sorry, you can choose workdays only</p>
-            <input id="date" type="date" class="reserve__date form__text" id="reserve__date" value="2018-03-29" min="" max="">
+            <p class="reserve__error-workday error">Please, choose date of your visit.</p>
+            <input id="date" type="date" class="reserve__date form__text" id="reserve__date" min="" max="">
 
-            <label for="reserve__time" class="form__label time__label-reserve">Time:</label>
+            <!-- <label for="reserve__time" class="form__label time__label-reserve">Time:</label>
             <p class="reserve__error-time error">Sorry, you can choose workdays only</p>
             <select class="reserve__time form__text" id="reserve__time">
               <option value="10">10:00</option>
               <option value="10">11:00</option>
               <option value="10">12:00</option>
               <option value="10">13:00</option>
-            </select>
+            </select> -->
 
             <label for="reserve__phone" class="form__label phone__label-reserve">Your phone number:
               <span class="phone__hint">*format: 8 (900) 111-22-22</span>
             </label>
-            <p class="reserve__error-phone error">No user with such Email or username!</p>
+            <p class="reserve__error-phone error">Please, insert your number in the provided format.</p>
             <input type="tel" class="reserve__phone form__text" id="reserve__phone" placeholder="8 (900) 111-22-22" pattern="^\d\s[\(]\d{3}[\)]\s\d{3}[\-]\d{2}[\-]\d{2}$"
-              required>
+              maxlength="17" required>
 
             <input type="submit" value="Reserve">
 

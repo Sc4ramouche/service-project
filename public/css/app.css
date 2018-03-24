@@ -98,6 +98,9 @@ table {
   background-color: #46ACC2;
   padding-top: 16px; }
 
+.header__logo {
+  text-decoration: none; }
+
 .header__nav {
   padding-top: 22px;
   flex-grow: 0; }
@@ -237,7 +240,8 @@ table {
 .user__name {
   display: inline-block;
   color: antiquewhite;
-  margin-right: 16px; }
+  margin-right: 16px;
+  text-decoration: none; }
 
 .sidebar {
   width: 40%;
@@ -281,7 +285,6 @@ table {
 .table {
   margin-bottom: 16px; }
 
-.previous__table,
 .table__cell {
   border: 1px solid black;
   padding: 8px; }
@@ -293,6 +296,19 @@ table {
   display: block;
   font-size: 14px;
   padding: 2px; }
+
+.reserve__button {
+  margin-bottom: 16px; }
+
+.cancel__button {
+  display: block;
+  text-decoration: none;
+  margin-left: 16px;
+  color: black;
+  display: inline-block;
+  background-color: lightseagreen;
+  border-radius: 8px;
+  padding: 0px 16px; }
 
 .clearfix {
   content: "";

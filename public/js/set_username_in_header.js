@@ -5,7 +5,7 @@ function setHeaderUsername() {
   if ( localStorage.logged ) {
     user.style.display = "block";
     login.style.display = "none";
-    userName.textContent = "Greetings, " + localStorage.logged + "!";
+    userName.textContent = "Greetings, " + localStorage.logged[0].toUpperCase() + localStorage.logged.slice(1) + "!";
   } else {
     user.style.display = "none";
     login.style.display = "block";
