@@ -65,21 +65,23 @@
             <div class="modal__register tabs-item">
               <label for="register__username" class="form__label username__label-register">Username:</label>
               <p class="register__error-username error">Sorry, this username is already in use!</p>
+              <p class="register__error-username-short error">Sorry, username is too short!</p>
               <input type="text" class="register__username form__text" id="register__username" placeholder="myusername" required>
-              
+
               <label for="register__email" class="form__label email__label-register">Email adress:</label>
               <p class="register__error-email error">Sorry, this Email is already in use!</p>
+              <p class="register__error-email-short error">Sorry, Email is too short!</p>
               <input type="email" class="register__email form__text" id="register__email" placeholder="joedoe@mail.com" required>
-              
+
               <label for="register__pasword" class="form__label password__label-register">Password:</label>
-              <p class="register__error-password error">No user with such Email or username!</p>
+              <p class="register__error-password error">Password has to be at least 5 characters!</p>
               <input type="password" class="register__password form__text" id="register__password" placeholder="pass" required>
-              
+
               <label for="register__password-repeat" class="form__label password-repeat__label-register">Repeat password:</label>
               <p class="register__error-match error">Password doesn't match!</p>
               <input type="password" class="register__password-repeat form__text" id="register__password-repeat" placeholder="repeat" required>
 
-              <input type="checkbox" class="register__agree" id="register__agree">              
+              <input type="checkbox" class="register__agree" id="register__agree">
               <label for="register__agree" class="form__label agree__label-register">I accept the terms of use</label>
               <p class="register__error-agree error">You must accept the terms of use!</p>
 

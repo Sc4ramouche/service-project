@@ -18,8 +18,10 @@ const session = (function createSession() {
     const userEmail = document.getElementsByClassName('register__email')[0].value.toLowerCase();
     const userPassword = document.getElementsByClassName('register__password')[0].value;
 
-    let uniqueUser = true;
+    let uniqueUser = true;    
     let uniqueEmail = true;
+    let usernameLongEnough = false;
+    let emailLongEnough = false;
     let passwordMatch = false;
     let agreement = document.getElementsByClassName('register__agree')[0].checked;
 
@@ -40,9 +42,33 @@ const session = (function createSession() {
         // if (key === "password") passwordMatch = checkPasswordMatch(userPassword);
       }
     });
+    
+    if (userName.length > 2) usernameLongEnough = true;
+    if (userEmail.length > 4) usernameLongEnough = true;
 
-    if (!uniqueUser) {
+    if (!usernameLongEnough) {
+      const error = document.getElementsByClassName('register__error-username-short')[0];
+      error.style.display = "inline-block";
+    } else if (!uniqueUser) {
       const error = document.getElementsByClassName('register__error-username')[0];
+      error.style.display = "inline-block";
+    }
+
+    if (!emailLongEnough) {
+      const error = document.getElementsByClassName('register__error-email-short')[0];
+      error.style.display = "inline-block";
+    } else if (!uniqueEmail) {
+      const error = document.getElementsByClassName('register__error-email')[0];
+      error.style.display = "inline-block";
+    }
+
+    if (!passwordMatch) {
+      const error = document.getElementsByClassName('register__error-match')[0];
+      error.style.display = "inline-block";
+    }
+
+    if (!agreement) {
+      const error = document.getElementsByClassName('register__error-agree')[0];
       error.style.display = "inline-block";
     }
 
@@ -53,12 +79,12 @@ const session = (function createSession() {
 
     function checkPasswordMatch(value) {
       let pswMatch = document.getElementsByClassName('register__password-repeat')[0].value;
-      if ( checkPasswordLength(value) ) {
+      if (checkPasswordLength(value)) {
         return (value === pswMatch) ? true : false
       } else {
-        const error = document.getElementsByClassName('register__error-username')[0];
+        const error = document.getElementsByClassName('register__error-password')[0];
         error.style.display = "inline-block";
-      }       
+      }
     }
 
     function checkPasswordLength(value) {
