@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="public/css/app.css">
   <link rel="stylesheet" href="public/fonts/fonts.css">
   <title>Beaty</title>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+    crossorigin="anonymous">
 </head>
 
 <body>
@@ -19,6 +21,9 @@
       </a>
       <nav class="header__nav">
         <ul class="nav__list">
+          <a href="#" class="nav__list-link nav__menu" onclick="responsive()">
+            <li class="nav__list-item">Menu</li>
+          </a>
           <a href="#" class="nav__list-link">
             <li class="nav__list-item">Home</li>
           </a>
@@ -93,12 +98,97 @@
     </div>
   </header>
 
+  <main class="promo">
+    <div class="promo__container">
+      <h2 class="promo__heading">Relax your mind and body</h2>
+      <p class="promo__description">Everyone needs a sense of calm and relief in one's life, especially if you are caught by rapid rhythm of big city.</p>
+      <p class="promo__description">Sign in to make a reservation on your personal journey to a world of relaxation.</p>
+      <button type="button" class="promo__button login__button--usual">Sign In</button>
+    </div>
+  </main>
+
+  <section class="spa">
+    <h2 class="spa__heading">Our services</h2>
+
+    <div class="spa__container">
+      <div class="spa__item">
+        <div class="spa__text">
+          <h4 class="spa__name">Massage Therapies</h4>
+          <p class="spa__description">A powerful ingredient for overall wellness, massage therapies decrease anxiety, enhance quality of sleep and improve
+            energy and healing.</p>
+        </div>
+        <div class="spa__image">
+          <img src="public/img/massage.jpg" alt="Massage Therapy" class="image__item img__item-massage">
+        </div>
+      </div>
+
+      <div class="spa__item">
+        <div class="spa__text">
+          <h4 class="spa__name">Facial</h4>
+          <p class="spa__description">Rejuvenating facials include cleansing, toning, exfoliation, extractions (optional), facial massage, and hand and
+            foot hydration.</p>
+        </div>
+        <div class="spa__image">
+          <img src="public/img/facial.jpg" alt="Massage Therapy" class="image__item img__item-massage">
+        </div>
+      </div>
+
+      <div class="spa__item">
+        <div class="spa__text">
+          <h4 class="spa__name">Body Treatments</h4>
+          <p class="spa__description">Body treatments are essentially a facial for your whole body and leave your skin feeling velvety smooth and soft.</p>
+        </div>
+        <div class="spa__image">
+          <img src="public/img/body.jpg" alt="Massage Therapy" class="image__item img__item-massage">
+        </div>
+      </div>
+
+      <div class="spa__item">
+        <div class="spa__text">
+          <h4 class="spa__name">Makeup & Waxing</h4>
+          <p class="spa__description">Our full-service spa offers makeup and waxing services.</p>
+        </div>
+        <div class="spa__image">
+          <img src="public/img/makeup.jpg" alt="Massage Therapy" class="image__item img__item-massage">
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <footer class="footer">
+    <nav class="footer__nav">
+      <a href="#" class="footer__nav-link">Home</a>
+      <a href="#" class="footer__nav-link">About</a>
+      <a href="#" class="footer__nav-link">Gallery</a>
+      <a href="#" class="footer__nav-link">Contact</a>
+    </nav>
+    <nav class="footer__nav">
+      <a href="#" class="footer__nav-link">Massage</a>
+      <a href="#" class="footer__nav-link">Facials</a>
+      <a href="#" class="footer__nav-link">Body Treatments</a>
+      <a href="#" class="footer__nav-link">Makeup & Waxing</a>
+    </nav>
+    <ul class="footer__list">
+      <li class="footer__list-item">Join us!</li>
+      <li class="footer__nav-link link-awesome">
+        <i class="fa fa-telegram" aria-hidden="true"></i>
+      </li>
+      <li class="footer__nav-link link-awesome">
+        <i class="fa fa-instagram" aria-hidden="true"></i>
+      </li>
+      <li class="footer__nav-link link-awesome">
+        <i class="fa fa-facebook-official" aria-hidden="true"></i>
+      </li>
+    </ul>
+  </footer>
+
   <script src="public/js/service_functions.js"></script>
   <script src="public/js/add_setObj_to_Storage_prototype.js"></script>
   <script src="public/js/set_username_in_header.js"></script>
   <script src="public/js/app.js"></script>
   <script src="public/js/modal.js"></script>
-  <script src="public/js/tabs.js"></script>    
+  <script src="public/js/tabs.js"></script>
   <script>
     document.getElementById("defaultOpen").click();
   </script>

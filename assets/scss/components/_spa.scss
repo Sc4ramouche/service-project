@@ -1,0 +1,50 @@
+.spa {
+  padding: 24px 40px;
+  background-color: lightsteelblue;
+
+  @include respond-to(handhelds) {
+    padding: 16px;
+  }
+
+  &__heading {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+
+  &__container {
+    display: grid;
+    grid-gap: 32px;
+    grid-template-columns: 1fr 1fr;
+
+    @include respond-to(handhelds) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+
+    @include respond-to(handhelds) {
+      display: block;
+    }
+  }
+
+  &__text {
+    padding: 0 16px;
+  }
+
+  &__name {
+    margin-bottom: 16px;
+    font-size: 18px;
+    text-align: center;
+  }
+
+  &__description {
+    
+    @include respond-to(handhelds) {
+      margin-bottom: 16px;
+    }
+  }
+}

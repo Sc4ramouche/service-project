@@ -12,3 +12,8 @@
   font-family: 'Timmana-Regular';
   src: url("./Timmana-Regular.ttf");
   src: local("Timmana-Regular"), url("./Timmana-Regular.ttf") format("ttf"), url("./Timmana-Regular.ttf") format("truetype"); }
+
+  @font-face {
+  font-family: 'SourceSansPro-Regular';
+  src: url("./SourceSansPro-Regular.ttf");
+  src: local("SourceSansPro-Regular"), url("./SourceSansPro-Regular.ttf") format("ttf"), url("./SourceSansPro-Regular.ttf") format("truetype"); }

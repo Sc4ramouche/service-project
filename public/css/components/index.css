@@ -3,13 +3,21 @@
   justify-content: space-around;
   background-color: #46ACC2;
   padding-top: 16px; }
+  @media only screen and (max-width: 480px) {
+    .header__container {
+      display: block;
+      padding-bottom: 8px; } }
 
 .header__logo {
-  text-decoration: none; }
+  text-decoration: none;
+  text-align: center; }
 
 .header__nav {
   padding-top: 22px;
   flex-grow: 0; }
+  @media only screen and (max-width: 480px) {
+    .header__nav {
+      padding-top: 8px; } }
 
 .header__login {
   padding-top: 12px; }
@@ -52,13 +60,36 @@
 .nav__list-link {
   text-decoration: none;
   margin-right: 24px; }
+  @media only screen and (max-width: 480px) {
+    .nav__list-link {
+      margin-right: auto;
+      margin-left: auto;
+      padding: 8px 16px;
+      width: 100%;
+      box-sizing: border-box; } }
 
 .nav__list-link:last-child {
   margin-right: 0; }
+  @media only screen and (max-width: 480px) {
+    .nav__list-link:last-child {
+      margin-right: auto; } }
+
+@media only screen and (max-width: 480px) {
+  .nav__list.responsive .nav__list-link {
+    float: none;
+    display: block;
+    text-align: center; } }
+
+.nav__menu {
+  display: none; }
 
 .login__button {
   outline: none;
   display: none; }
+  @media only screen and (max-width: 480px) {
+    .login__button {
+      display: block;
+      margin: 0 auto; } }
 
 .login__button:hover {
   cursor: pointer; }
@@ -89,6 +120,10 @@
     padding-top: 32px;
     border: 1px solid #888;
     width: 50%; }
+    @media only screen and (max-width: 480px) {
+      .modal__content {
+        padding: 8px 16px;
+        width: 80%; } }
   .modal__close {
     color: #aaa;
     position: absolute;
@@ -148,6 +183,17 @@
   color: antiquewhite;
   margin-right: 16px;
   text-decoration: none; }
+
+@media screen and (max-width: 480px) {
+  .nav__list-link {
+    display: none; }
+  .nav__menu {
+    display: block;
+    text-align: center; }
+  .nav__list.responsive .nav__list-link {
+    float: none;
+    display: block;
+    text-align: center; } }
 
 .sidebar {
   width: 40%;
@@ -215,3 +261,8 @@
   background-color: lightseagreen;
   border-radius: 8px;
   padding: 0px 16px; }
+
+.promo {
+  width: 100%;
+  height: 100px;
+  background: url("../public/img/promo.jpg") no-repeat center center fixed; }

@@ -1,8 +1,17 @@
 .sidebar {
+  box-sizing: border-box;
   width: 40%;
   padding: 16px;
   padding-bottom: 0;
-  background-color:	#A8DCD1;
+  background-color:	lightsteelblue;
+  border-left: 5px solid lightblue;
+
+  @include respond-to(medium-screens) {
+    width: 100%;
+  }
+  @include respond-to(handhelds) {
+    width: 100%;
+  }
 
   &__heading {
     text-align: center;
@@ -14,6 +23,10 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 32px;
+
+    @include respond-to(handhelds) {
+      display: block;
+    }
   }
 }
 
@@ -30,6 +43,7 @@
 
   &__description {
     font-size: 14px;
+    margin-bottom: 16px;
   }
 }
 

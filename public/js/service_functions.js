@@ -21,7 +21,7 @@ function checkPhoneNumber(number) {
   return myRe.test(number);
 }
 
-function writeServiceToTable(date, service) {
+function writeServiceToTable(date, service, index) {
   let whichTable = '';
 
   if (new Date(date) < new Date()) {
@@ -38,10 +38,11 @@ function writeServiceToTable(date, service) {
 
   dateCell.innerHTML = date;
   serviceCell.innerHTML = service;
+  row.setAttribute("index", index);
 
   if (whichTable === 'upcoming') {
     let cancelCell = row.insertCell(2);
-    cancelCell.innerHTML = '<button type="button" class="cancel__button login__button--usual">Cancel</button>';
+    cancelCell.innerHTML = `<button type="button" class="cancel__button login__button--usual" index=${index}>Cancel</button>`;    
     table.style.display = "block";
   }
 
@@ -150,5 +151,12 @@ function createTestUsers() {
     });
 
     localStorage.setObj('users', temp);
+  }
+}
+
+function responsive() {
+  let x = document.getElementsByClassName("nav__list")[0];
+  if (x.classList.contains("nav__list") ) {
+      x.classList.toggle("responsive");
   }
 }

@@ -11,4 +11,8 @@
     outline: none;
     cursor: pointer;
   }
+
+  &__button--usual:hover {
+    background-color: rgb(214, 50, 50);
+  }
 }

@@ -246,11 +246,11 @@ const session = (function createSession() {
     let currentUser = users[localStorage.currentUserId];
 
     if (currentUser.services !== undefined) {
-      currentUser.services.forEach((value) => {
+      currentUser.services.forEach((value, index) => {
         let tableDate = value.date;
         let tableService = value.service;
 
-        writeServiceToTable(tableDate, tableService);
+        writeServiceToTable(tableDate, tableService, index);
       });
     }
 
@@ -291,12 +291,11 @@ const session = (function createSession() {
 
 })();
 
-const loginBtn = document.getElementsByClassName('login__submit')[0];
-loginBtn.addEventListener('click', session.checkLogin);
+const loginBtnSubmit = document.getElementsByClassName('login__submit')[0];
+loginBtnSubmit.addEventListener('click', session.checkLogin);
 
 const registerBtn = document.getElementsByClassName('register__submit')[0];
 registerBtn.addEventListener('click', session.checkRegister);
 
 session.setInputDate();
 session.showInitialVisits();
-

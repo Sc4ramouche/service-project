@@ -6,4 +6,12 @@
   border: none;
   border-radius: 0;
   cursor: pointer;
+
+  @include respond-to(handhelds) {
+    width: 70%;
+  }
+
+  @include respond-to(medium-screens) {
+    width: 50%;
+  }
 }

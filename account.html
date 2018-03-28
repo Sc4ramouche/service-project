@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="public/css/app.css">
   <link rel="stylesheet" href="public/fonts/fonts.css">
   <title>Beaty</title>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+    crossorigin="anonymous">
 </head>
 
 <body>
@@ -19,6 +21,9 @@
       </a>
       <nav class="header__nav">
         <ul class="nav__list">
+          <a href="#" class="nav__list-link nav__menu" onclick="responsive()">
+            <li class="nav__list-item">Menu</li>
+          </a>
           <a href="#" class="nav__list-link">
             <li class="nav__list-item">Home</li>
           </a>
@@ -95,21 +100,21 @@
   <section class="account">
 
     <div class="account__container">
-        <h3 class="account__heading heading__upcoming">Upcoming visits</h3>
-        <table class="upcoming__table table">
-          <tr class="upcoming__table-row">
-            <th class="upcoming__table-header table__cell">Date</th>
-            <th class="upcoming__table-header table__cell">Services</th>
-          </tr>
-        </table>
+      <h3 class="account__heading heading__upcoming">Upcoming visits</h3>
+      <table class="upcoming__table table">
+        <tr class="upcoming__table-row">
+          <th class="upcoming__table-header table__cell">Date</th>
+          <th class="upcoming__table-header table__cell">Services</th>
+        </tr>
+      </table>
 
-        <h3 class="account__heading heading__previous">Previously ordered services</h3>
-        <table class="previous__table table">
-          <tr class="previous__table-row">
-            <th class="previous__table-header table__cell">Date</th>
-            <th class="previous__table-header table__cell">Services</th>
-          </tr>
-        </table>
+      <h3 class="account__heading heading__previous">Previously ordered services</h3>
+      <table class="previous__table table">
+        <tr class="previous__table-row">
+          <th class="previous__table-header table__cell">Date</th>
+          <th class="previous__table-header table__cell">Services</th>
+        </tr>
+      </table>
 
       <button type="button" class="reserve__button login__button--usual">Reserve your SPA!</button>
 
@@ -119,7 +124,7 @@
           <form action="POST">
 
             <label for="reserve__service" class="form__label service__label-reserve">Choose your service:</label>
-            <p class="reserve__error-service error">No</p>
+            <!-- <p class="reserve__error-service error">No</p> -->
             <select class="reserve__service form__text" id="reserve__service" required>
               <option value="Massage">Massage Therapy — 50$</option>
               <option value="Facials">Facials — 25$</option>
@@ -128,7 +133,7 @@
             </select>
 
             <label for="reserve__date" class="form__label date__label-reserve">Date:</label>
-            <p class="reserve__error-workday error">Please, choose date of your visit.</p>
+            <!-- <p class="reserve__error-workday error">Please, choose date of your visit.</p> -->
             <input id="date" type="date" class="reserve__date form__text" id="reserve__date" min="" max="">
 
             <!-- <label for="reserve__time" class="form__label time__label-reserve">Time:</label>
@@ -143,7 +148,7 @@
             <label for="reserve__phone" class="form__label phone__label-reserve">Your phone number:
               <span class="phone__hint">*format: 8 (900) 111-22-22</span>
             </label>
-            <p class="reserve__error-phone error">Please, insert your number in the provided format.</p>
+            <!-- <p class="reserve__error-phone error">Please, insert your number in the provided format.</p> -->
             <input type="tel" class="reserve__phone form__text" id="reserve__phone" placeholder="8 (900) 111-22-22" pattern="^\d\s[\(]\d{3}[\)]\s\d{3}[\-]\d{2}[\-]\d{2}$"
               maxlength="17" required>
 
@@ -202,6 +207,33 @@
     </aside>
 
   </section>
+
+  <footer class="footer">
+    <nav class="footer__nav">
+      <a href="#" class="footer__nav-link">Home</a>
+      <a href="#" class="footer__nav-link">About</a>
+      <a href="#" class="footer__nav-link">Gallery</a>
+      <a href="#" class="footer__nav-link">Contact</a>
+    </nav>
+    <nav class="footer__nav">
+      <a href="#" class="footer__nav-link">Massage</a>
+      <a href="#" class="footer__nav-link">Facials</a>
+      <a href="#" class="footer__nav-link">Body Treatments</a>
+      <a href="#" class="footer__nav-link">Makeup & Waxing</a>
+    </nav>
+    <ul class="footer__list">
+      <li class="footer__list-item">Join us!</li>
+      <li class="footer__nav-link link-awesome">
+        <i class="fa fa-telegram" aria-hidden="true"></i>
+      </li>
+      <li class="footer__nav-link link-awesome">
+        <i class="fa fa-instagram" aria-hidden="true"></i>
+      </li>
+      <li class="footer__nav-link link-awesome">
+        <i class="fa fa-facebook-official" aria-hidden="true"></i>
+      </li>
+    </ul>
+  </footer>
 
   <script src="public/js/service_functions.js"></script>
   <script src="public/js/add_setObj_to_Storage_prototype.js"></script>

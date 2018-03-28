@@ -24,7 +24,8 @@
 .form__label {
   font-size: 18px;
   color: #666666;
-  display: inline-block; }
+  display: inline-block;
+  margin-bottom: 16px; }
 
 .form__submit-btn {
   display: block;
@@ -34,6 +35,12 @@
   border: none;
   border-radius: 0;
   cursor: pointer; }
+  @media only screen and (max-width: 480px) {
+    .form__submit-btn {
+      width: 70%; } }
+  @media only screen and (min-width: 481px) and (max-width: 1023px) {
+    .form__submit-btn {
+      width: 50%; } }
 
 .error {
   font-size: 14px;

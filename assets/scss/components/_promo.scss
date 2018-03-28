@@ -1,0 +1,50 @@
+.promo {
+  width: 100%;
+  background: url("../../public/img/promo.jpg") no-repeat center center;
+  background-size: cover;
+  padding-top: 56px;
+  padding-bottom: 56px;
+  font-family: "SourceSansPro-Regular";
+
+  &__container {
+    width: 65%;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 24px;
+    padding: 40px;
+    color: antiquewhite;
+  }
+
+  &__heading {
+    text-align: center;
+    margin-bottom: 56px;
+    font-size: 40px;
+    font-family: "SourceSansPro-Regular";
+  }
+
+  &__description {
+    margin-bottom: 16px;
+    font-size: 18px;
+    text-align: center;
+  }
+
+  &__description:last-of-type {
+    margin-bottom: 36px;
+  }
+
+  &__button {
+    display: block;
+    margin: 0 auto;
+    width: 20%;
+    background-color: lightsteelblue;
+    color: black;
+
+    @include respond-to(handhelds) {
+      width: 50%;
+    }
+  }
+
+  &__button:hover {
+    background-color: lightseagreen;
+  }
+}

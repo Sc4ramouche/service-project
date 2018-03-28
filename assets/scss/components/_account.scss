@@ -1,8 +1,15 @@
 .account {
   position: relative;
-  background-color: #DBB4AD;
+  background-color: lightsteelblue;
   display: flex;
   justify-content: space-between;
+
+  @include respond-to(medium-screens) {
+    display: block;
+  }
+  @include respond-to(handhelds) {
+    display: block;
+  }
 
   &__container {
     padding: 16px;
@@ -15,7 +22,8 @@
 }
 
 .table {
-  margin-bottom: 16px;;
+  margin-bottom: 16px;
+  border-radius: 8px;
 }
 
 .table__cell {
@@ -35,6 +43,9 @@
 
 .reserve__button {
   margin-bottom: 16px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .cancel__button {
