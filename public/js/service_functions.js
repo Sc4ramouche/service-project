@@ -12,7 +12,6 @@ function transformDateForInput(date) {
 
 function add30Days(date) {
   let plus30days = new Date(date.setDate(date.getDate() + 30));
-  console.log(plus30days);
 }
 
 function checkPhoneNumber(number) {
@@ -42,7 +41,7 @@ function writeServiceToTable(date, service, index) {
 
   if (whichTable === 'upcoming') {
     let cancelCell = row.insertCell(2);
-    cancelCell.innerHTML = `<button type="button" class="cancel__button login__button--usual" index=${index}>Cancel</button>`;    
+    cancelCell.innerHTML = `<button type="button" class="cancel__button login__button--usual" id="${index}" onClick="session.cancelUpcomingVisits(this.id)">Cancel</button>`;
     table.style.display = "block";
   }
 
@@ -59,7 +58,7 @@ function checkExistingServices() {
   const tableUpcoming = document.getElementsByClassName('upcoming__table')[0];
 
   disableTableIfEmpty(tablePrevious);
-  disableTableIfEmpty(tableUpcoming);  
+  disableTableIfEmpty(tableUpcoming);
 }
 
 function disableTableIfEmpty(table) {
@@ -71,6 +70,40 @@ function disableTableIfEmpty(table) {
       document.getElementsByClassName("heading__previous")[0].style.display = "none";
     }
   }
+}
+
+function writeDataToEnsureModal(cancelButtonId) {
+  const cancelMessage = document.getElementsByClassName("ensure__message")[0];
+  tableRow = getRowToProcess(cancelButtonId);
+
+  const date = tableRow.childNodes[0].innerHTML;
+  const service = tableRow.childNodes[1].innerHTML;
+
+  cancelMessage.innerHTML = `Are you sure you want to cancel ${service} service at ${date}?`;
+}
+
+function removeFromLocalStorage(row) {
+  const users = JSON.parse(localStorage.users);
+  const id = localStorage.currentUserId;
+
+  const date = row.childNodes[0].innerHTML;
+  const service = row.childNodes[1].innerHTML;
+
+  users[id].services.forEach((value, index) => {
+    if (value.service == service && value.date == date) {
+      users[id].services.splice(index, 1);
+    }
+  });
+
+  localStorage.setObj('users', users);
+}
+
+function hideTableIfLeftEmpty() {
+  const table = document.getElementsByClassName("upcoming__table")[0];
+
+  console.log( table.rows.length );
+
+  if (table.rows.length < 2) table.style.display = "none";
 }
 
 function createTestUsers() {
@@ -154,9 +187,23 @@ function createTestUsers() {
   }
 }
 
+function getRowToProcess(id) {
+  const tableRows = document.querySelectorAll('tr');
+  let rightTableRow;
+
+  for (let i = 0; i < tableRows.length; i++) {
+    if (tableRows[i].getAttribute("index") === id) {
+      //  tableRows[i].parentNode.removeChild(tableRows[i]);
+      rightTableRow = tableRows[i];
+    }
+  }
+
+  return rightTableRow;
+}
+
 function responsive() {
   let x = document.getElementsByClassName("nav__list")[0];
-  if (x.classList.contains("nav__list") ) {
-      x.classList.toggle("responsive");
+  if (x.classList.contains("nav__list")) {
+    x.classList.toggle("responsive");
   }
 }

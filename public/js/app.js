@@ -18,7 +18,7 @@ const session = (function createSession() {
     const userEmail = document.getElementsByClassName('register__email')[0].value.toLowerCase();
     const userPassword = document.getElementsByClassName('register__password')[0].value;
 
-    let uniqueUser = true;    
+    let uniqueUser = true;
     let uniqueEmail = true;
     let usernameLongEnough = false;
     let emailLongEnough = false;
@@ -42,7 +42,7 @@ const session = (function createSession() {
         // if (key === "password") passwordMatch = checkPasswordMatch(userPassword);
       }
     });
-    
+
     if (userName.length > 2) usernameLongEnough = true;
     if (userEmail.length > 4) usernameLongEnough = true;
 
@@ -216,6 +216,8 @@ const session = (function createSession() {
     }
 
     session.updateUpcomingVisits();
+
+    document.getElementsByClassName('reserve__modal')[0].style.display = "none";
   }
 
   function updateUpcomingVisits() {
@@ -257,12 +259,26 @@ const session = (function createSession() {
     checkExistingServices();
   }
 
-  function cancelUpcomingVisits() {
-    let users = JSON.parse(localStorage.users);
-    let currentUser = users[localStorage.currentUserId];
+  function cancelUpcomingVisits(cancelButtonId) {
+    const tableRow = getRowToProcess(cancelButtonId);
 
-    const row = reference.parentNode;
-    console.log(row);
+    writeDataToEnsureModal(cancelButtonId);
+
+    evokeEnsureModal(cancelButtonId);
+  }
+
+  function removeUpcomingService() {
+    const ensureModal = document.getElementsByClassName("ensure__modal")[0];
+
+    const tableRow = getRowToProcess(ensureModal.getAttribute("cancelid"));
+
+    tableRow.parentNode.removeChild(tableRow);
+
+    removeFromLocalStorage(tableRow);
+
+    document.getElementsByClassName("ensure__modal")[0].style.display = "none";
+
+    hideTableIfLeftEmpty();
   }
 
   function setInputDate() {
@@ -286,7 +302,9 @@ const session = (function createSession() {
     setInputDate: setInputDate,
     makeReservation: makeReservation,
     updateUpcomingVisits: updateUpcomingVisits,
-    showInitialVisits: showInitialVisits
+    showInitialVisits: showInitialVisits,
+    cancelUpcomingVisits: cancelUpcomingVisits,
+    removeUpcomingService: removeUpcomingService
   };
 
 })();
@@ -296,6 +314,12 @@ loginBtnSubmit.addEventListener('click', session.checkLogin);
 
 const registerBtn = document.getElementsByClassName('register__submit')[0];
 registerBtn.addEventListener('click', session.checkRegister);
+
+const removeBtn = document.getElementsByClassName('remove__button')[0];
+removeBtn.addEventListener('click', session.removeUpcomingService);
+
+const makeReservationBtn = document.getElementsByClassName('make-reservation__button')[0];
+makeReservationBtn.addEventListener('click', session.makeReservation);
 
 session.setInputDate();
 session.showInitialVisits();

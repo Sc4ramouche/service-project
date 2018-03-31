@@ -8,6 +8,11 @@
   flex-wrap: wrap;
   justify-content: space-around;
 
+  @include respond-to(handhelds) {
+    justify-content: space-between;
+    padding: 8px 16px;
+  }
+
   &__nav {
 
     &-link {

@@ -94,6 +94,10 @@
       }
     }
 
+    &-link:hover {
+      border-bottom: 1px solid antiquewhite;
+    }
+
     &-link:last-child {
       margin-right: 0;
 

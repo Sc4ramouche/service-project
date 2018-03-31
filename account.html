@@ -136,15 +136,6 @@
             <!-- <p class="reserve__error-workday error">Please, choose date of your visit.</p> -->
             <input id="date" type="date" class="reserve__date form__text" id="reserve__date" min="" max="">
 
-            <!-- <label for="reserve__time" class="form__label time__label-reserve">Time:</label>
-            <p class="reserve__error-time error">Sorry, you can choose workdays only</p>
-            <select class="reserve__time form__text" id="reserve__time">
-              <option value="10">10:00</option>
-              <option value="10">11:00</option>
-              <option value="10">12:00</option>
-              <option value="10">13:00</option>
-            </select> -->
-
             <label for="reserve__phone" class="form__label phone__label-reserve">Your phone number:
               <span class="phone__hint">*format: 8 (900) 111-22-22</span>
             </label>
@@ -152,9 +143,20 @@
             <input type="tel" class="reserve__phone form__text" id="reserve__phone" placeholder="8 (900) 111-22-22" pattern="^\d\s[\(]\d{3}[\)]\s\d{3}[\-]\d{2}[\-]\d{2}$"
               maxlength="17" required>
 
-            <input type="submit" value="Reserve">
+            <button type="button" class="make-reservation__button login__button--usual">Reserve</button>
 
           </form>
+        </div>
+      </div>
+
+      <div class="ensure__modal">
+        <div class="modal__content">
+          <span class="modal__close">&times;</span>
+          <p class="ensure__message"></p>
+          <div class="ensure__container">
+            <button type="button" class="remove__button login__button--usual">Cancel</button>
+            <button type="button" class="leave__button login__button--usual">Leave</button>
+          </div>
         </div>
       </div>
     </div>
