@@ -1,104 +1,39 @@
 /*eslint wrap-iife: false*/
 const session = (function createSession() {
 
-  function removeErrors() {
-    const errors = document.getElementsByClassName('error');
-    for (let i = 0; i < errors.length; i++) {
-      errors[i].style.display = "none";
-    };
-  }
-
-  // Private check register function 
   function checkRegister() {
-    removeErrors();
+    service.removeErrors();
 
-    const storageArray = JSON.parse(localStorage.users);
-
+    const storageArray = localStorage.getObj('users');
     const userName = document.getElementsByClassName('register__username')[0].value.toLowerCase();
     const userEmail = document.getElementsByClassName('register__email')[0].value.toLowerCase();
     const userPassword = document.getElementsByClassName('register__password')[0].value;
 
     let uniqueUser = true;
     let uniqueEmail = true;
-    let usernameLongEnough = false;
-    let emailLongEnough = false;
     let passwordMatch = false;
     let agreement = document.getElementsByClassName('register__agree')[0].checked;
 
     storageArray.forEach((value, index) => {
       for (let key in value) {
-
-        if (key === "username") {
-          let alreadyMet = (userName === value[key]) ? true : false;
-          if (alreadyMet === true) uniqueUser = false;
-        }
-        if (key === "email") {
-          let alreadyMet = (userEmail === value[key]) ? true : false;
-          if (alreadyMet === true) uniqueEmail = false;
-        }
-        if (key === "password") passwordMatch = checkPasswordMatch(userPassword);
-        // if (key === "username") uniqueUser = (userName === value[key]) ? false : true;
-        // if (key === "email") uniqueEmail = (userEmail === value[key]) ? false : true;
-        // if (key === "password") passwordMatch = checkPasswordMatch(userPassword);
+        if (key === "username" && value[key] === userName) uniqueUser = false;
+        if (key === "email" && userEmail === value[key]) uniqueEmail = false;
+        if (key === "password") passwordMatch = service.checkPasswordMatch(userPassword);
       }
     });
 
-    if (userName.length > 2) usernameLongEnough = true;
-    if (userEmail.length > 4) usernameLongEnough = true;
+    service.checkUsernameErrors(userName, uniqueUser);
+    service.checkEmailErrors(userEmail, uniqueEmail);
+    service.checkPasswordErrors(passwordMatch);
+    service.checkAgreementErrors(agreement);
 
-    if (!usernameLongEnough) {
-      const error = document.getElementsByClassName('register__error-username-short')[0];
-      error.style.display = "inline-block";
-    } else if (!uniqueUser) {
-      const error = document.getElementsByClassName('register__error-username')[0];
-      error.style.display = "inline-block";
-    }
-
-    if (!emailLongEnough) {
-      const error = document.getElementsByClassName('register__error-email-short')[0];
-      error.style.display = "inline-block";
-    } else if (!uniqueEmail) {
-      const error = document.getElementsByClassName('register__error-email')[0];
-      error.style.display = "inline-block";
-    }
-
-    if (!passwordMatch) {
-      const error = document.getElementsByClassName('register__error-match')[0];
-      error.style.display = "inline-block";
-    }
-
-    if (!agreement) {
-      const error = document.getElementsByClassName('register__error-agree')[0];
-      error.style.display = "inline-block";
-    }
-
-    if (uniqueUser &&
-      uniqueEmail &&
-      passwordMatch &&
-      agreement) session.createUser();
-
-    function checkPasswordMatch(value) {
-      let pswMatch = document.getElementsByClassName('register__password-repeat')[0].value;
-      if (checkPasswordLength(value)) {
-        return (value === pswMatch) ? true : false
-      } else {
-        const error = document.getElementsByClassName('register__error-password')[0];
-        error.style.display = "inline-block";
-      }
-    }
-
-    function checkPasswordLength(value) {
-      return (value.length > 4) ? true : false;
-    }
+    if (uniqueUser && uniqueEmail && passwordMatch && agreement) session.createUser();
   }
 
-  // private check login function
   function checkLogin() {
+    service.removeErrors();
 
-    removeErrors();
-
-    const storageArray = JSON.parse(localStorage.users);
-
+    const storageArray = localStorage.getObj('users');
     const userNameOrEmail = document.getElementsByClassName('login__email')[0].value.toLowerCase();
     const userPassword = document.getElementsByClassName('login__password')[0].value.toLowerCase();
 
@@ -110,58 +45,18 @@ const session = (function createSession() {
     for (let userId = 0; userId < storageArray.length; userId++) {
       for (let key in storageArray[userId]) {
         if (key === "username" || key === "email") {
-          usernameExists = checkUsernameExists(userNameOrEmail, storageArray[userId][key]) || checkEmailExists(userNameOrEmail, storageArray[userId][key]);
+          usernameExists = service.checkUsernameExists(userNameOrEmail, storageArray[userId][key]) 
+                        || service.checkEmailExists(userNameOrEmail, storageArray[userId][key]);
           rememberUser = userId;
           if (usernameExists) break check;
         }
       }
     }
 
-    if (usernameExists) {
-      correctPassword = checkPassword(storageArray[rememberUser].password, userPassword);
-    }
-
-    if (!usernameExists) {
-      const error = document.getElementsByClassName('login__error-email')[0];
-      error.style.display = "inline-block";
-    }
-
-    if (!correctPassword && usernameExists) {
-      const error = document.getElementsByClassName('login__error-password')[0];
-      error.style.display = "inline-block";
-    }
-
-    if (correctPassword && usernameExists) {
-      let headerUser = document.getElementsByClassName('user__name')[0];
-      headerUser.textContent = userNameOrEmail;
-      localStorage.logged = userNameOrEmail;
-      localStorage.currentUserId = rememberUser;
-      window.location.href = "account.html";
-    }
-
-    // Serving functions
-    function checkUsernameExists(value, usr) {
-      return (value === usr) ? true : false;
-    }
-
-    function checkEmailExists(value, mail) {
-      return (value === mail) ? true : false;
-    }
-
-    function checkPassword(value, psw) {
-      return (value === psw) ? true : false;
-    }
-
-    function errorUser() {
-      return usernameExist ? true : false;
-    }
-
-    function errorPassword() {
-      return correctPassword ? true : false;
-    }
+    correctPassword = service.checkLoginErrors(usernameExists, storageArray, rememberUser, userPassword, correctPassword);
+    if (correctPassword && usernameExists) service.loggingIn(userNameOrEmail, rememberUser);
   }
 
-  // private create user function
   function createUser() {
     let userName = document.getElementsByClassName('register__username')[0].value.toLowerCase();
     let userEmail = document.getElementsByClassName('register__email')[0].value.toLowerCase();
@@ -173,50 +68,29 @@ const session = (function createSession() {
       password: userPassword
     };
 
-    if (localStorage.users === undefined) {
-      localStorage.users = "";
-      let temp = JSON.parse('[' + localStorage.users + ']');
-      temp.push(userItem);
-      localStorage.setObj('users', temp);
-    } else {
-      let temp = JSON.parse(localStorage.users);
-      temp.push(userItem);
-      localStorage.setObj('users', temp);
-    }
+    service.writeUserToLocalStorage(userItem);
 
     localStorage.logged = userName;
     localStorage.currentUserId = JSON.parse(localStorage.users).length - 1;
     redirect();
-    setHeaderUsername();
+    service.setHeaderUsername();
   }
 
   function makeReservation() {
-    let currentId = localStorage.currentUserId;
+    const phoneNumber = document.getElementsByClassName('reserve__phone')[0].value;
+    const users = localStorage.getObj('users');
+    const id = localStorage.currentUserId;
 
-    let chosenService = document.getElementsByClassName('reserve__service')[0].value;
-    let chosenDate = document.getElementsByClassName('reserve__date')[0].value;
-    let phoneNumber = document.getElementsByClassName('reserve__phone')[0].value;
+    const serviceItem = {
+      service: document.getElementsByClassName('reserve__service')[0].value,
+      date: document.getElementsByClassName('reserve__date')[0].value
+    };
 
-    let users = JSON.parse(localStorage.users);
-    let id = localStorage.currentUserId;
-
-    if (checkPhoneNumber(phoneNumber) && chosenDate !== '') {
-
-      let serviceItem = {
-        service: chosenService,
-        date: chosenDate,
-      };
-
-      users[id].phone = phoneNumber;
-
-      if (users[id].services === undefined) users[id].services = [];
-
-      users[id].services.push(serviceItem);
-      localStorage.setObj("users", users);
+    if (service.checkPhoneNumber(phoneNumber) && serviceItem.date !== '') {
+      service.writeReservationToLocalStorage(users, id, phoneNumber, serviceItem);
     }
 
     session.updateUpcomingVisits();
-
     document.getElementsByClassName('reserve__modal')[0].style.display = "none";
   }
 
@@ -228,19 +102,10 @@ const session = (function createSession() {
       let tableDate = currentUser.services[currentUser.services.length - 1].date;
       let tableService = currentUser.services[currentUser.services.length - 1].service;
 
-      writeServiceToTable(tableDate, tableService);
+      service.writeServiceToTable(tableDate, tableService);
     };
 
-    // if (currentUser.services !== undefined) {
-    //   currentUser.services.forEach((value) => {
-    //     let tableDate = value.date;
-    //     let tableService = value.service;
-
-    //     writeServiceToTable(tableDate, tableService);
-    //   });
-    // }
-
-    checkExistingServices();
+    service.checkExistingServices();
   }
 
   function showInitialVisits() {
@@ -252,33 +117,30 @@ const session = (function createSession() {
         let tableDate = value.date;
         let tableService = value.service;
 
-        writeServiceToTable(tableDate, tableService, index);
+        service.writeServiceToTable(tableDate, tableService, index);
       });
     }
 
-    checkExistingServices();
+    service.checkExistingServices();
   }
 
   function cancelUpcomingVisits(cancelButtonId) {
-    const tableRow = getRowToProcess(cancelButtonId);
+    const tableRow = service.getRowToProcess(cancelButtonId);
 
-    writeDataToEnsureModal(cancelButtonId);
+    service.writeDataToEnsureModal(cancelButtonId);
 
-    evokeEnsureModal(cancelButtonId);
+    service.evokeEnsureModal(cancelButtonId);
   }
 
   function removeUpcomingService() {
     const ensureModal = document.getElementsByClassName("ensure__modal")[0];
 
-    const tableRow = getRowToProcess(ensureModal.getAttribute("cancelid"));
+    const tableRow = service.getRowToProcess(ensureModal.getAttribute("cancelid"));
 
-    tableRow.parentNode.removeChild(tableRow);
-
-    removeFromLocalStorage(tableRow);
-
+    service.removeTableRow(tableRow);
+    service.removeFromLocalStorage(tableRow);
     document.getElementsByClassName("ensure__modal")[0].style.display = "none";
-
-    hideTableIfLeftEmpty();
+    service.hideTableIfLeftEmpty();
   }
 
   function setInputDate() {
@@ -286,8 +148,8 @@ const session = (function createSession() {
     let currentDate = new Date();
     let plus30Days = new Date(currentDate.setDate(currentDate.getDate() + 30));
     // let maxDate = transformDateForInput(new Date());
-    inputDate.setAttribute('min', String(transformDateForInput(new Date())));
-    inputDate.setAttribute('max', String(transformDateForInput(plus30Days)));
+    inputDate.setAttribute('min', String(service.transformDateForInput(new Date())));
+    inputDate.setAttribute('max', String(service.transformDateForInput(plus30Days)));
   }
 
   function redirect() {
@@ -295,16 +157,16 @@ const session = (function createSession() {
   }
 
   return {
-    createUser: createUser,
-    checkRegister: checkRegister,
-    checkLogin: checkLogin,
-    redirect: redirect,
-    setInputDate: setInputDate,
-    makeReservation: makeReservation,
-    updateUpcomingVisits: updateUpcomingVisits,
-    showInitialVisits: showInitialVisits,
-    cancelUpcomingVisits: cancelUpcomingVisits,
-    removeUpcomingService: removeUpcomingService
+    createUser,
+    checkRegister,
+    checkLogin,
+    redirect,
+    setInputDate,
+    makeReservation,
+    updateUpcomingVisits,
+    showInitialVisits,
+    cancelUpcomingVisits,
+    removeUpcomingService
   };
 
 })();
@@ -321,5 +183,10 @@ removeBtn.addEventListener('click', session.removeUpcomingService);
 const makeReservationBtn = document.getElementsByClassName('make-reservation__button')[0];
 makeReservationBtn.addEventListener('click', session.makeReservation);
 
+let signOff = document.getElementsByClassName('sign-out__button')[0];
+signOff.addEventListener('click', signOut);
+
 session.setInputDate();
 session.showInitialVisits();
+
+setHeaderUsername();

@@ -20,6 +20,3 @@ function signOut() {
   console.log('l');
   window.location.replace("index.html");
 }
-
-let signOff = document.getElementsByClassName('sign-out__button')[0];
-signOff.addEventListener('click', signOut);
