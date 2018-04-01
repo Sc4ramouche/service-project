@@ -14,10 +14,12 @@
   &__container {
     padding: 16px;
     padding-left: 32px;
+    margin: 0 auto;
   }
 
   &__heading {
     margin-bottom: 16px;
+    text-align: center;
   }
 }
 
@@ -31,8 +33,14 @@
   padding: 8px;
 }
 
-.previous__table-header {
+.previous__table-header,
+.upcoming__table-header {
   padding-bottom: 16px;
+  background-color: rgb(116, 161, 219);
+}
+
+.table__row:nth-child(3n) > .table__cell {
+  background-color: rgb(145, 184, 235);
 }
 
 .phone__hint {

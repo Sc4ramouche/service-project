@@ -33,7 +33,7 @@ const session = (function createSession() {
   function checkLogin() {
     service.removeErrors();
 
-    const storageArray = localStorage.getObj('users');
+    const users = localStorage.getObj('users');
     const userNameOrEmail = document.getElementsByClassName('login__email')[0].value.toLowerCase();
     const userPassword = document.getElementsByClassName('login__password')[0].value.toLowerCase();
 
@@ -41,19 +41,16 @@ const session = (function createSession() {
     let correctPassword = false;
     let rememberUser = 0;
 
-    check:
-    for (let userId = 0; userId < storageArray.length; userId++) {
-      for (let key in storageArray[userId]) {
-        if (key === "username" || key === "email") {
-          usernameExists = service.checkUsernameExists(userNameOrEmail, storageArray[userId][key]) 
-                        || service.checkEmailExists(userNameOrEmail, storageArray[userId][key]);
-          rememberUser = userId;
-          if (usernameExists) break check;
-        }
-      }
+    for (let userId = 0; userId < users.length; userId++) {
+      if (users[userId].username.toLowerCase() === userNameOrEmail 
+       || users[userId].email.toLowerCase === userNameOrEmail) {
+         usernameExists = true;
+         rememberUser = userId;
+         break;
+       }
     }
 
-    correctPassword = service.checkLoginErrors(usernameExists, storageArray, rememberUser, userPassword, correctPassword);
+    correctPassword = service.checkLoginErrors(usernameExists, users, rememberUser, userPassword, correctPassword);
     if (correctPassword && usernameExists) service.loggingIn(userNameOrEmail, rememberUser);
   }
 
@@ -177,16 +174,7 @@ loginBtnSubmit.addEventListener('click', session.checkLogin);
 const registerBtn = document.getElementsByClassName('register__submit')[0];
 registerBtn.addEventListener('click', session.checkRegister);
 
-const removeBtn = document.getElementsByClassName('remove__button')[0];
-removeBtn.addEventListener('click', session.removeUpcomingService);
-
-const makeReservationBtn = document.getElementsByClassName('make-reservation__button')[0];
-makeReservationBtn.addEventListener('click', session.makeReservation);
-
 let signOff = document.getElementsByClassName('sign-out__button')[0];
 signOff.addEventListener('click', signOut);
-
-session.setInputDate();
-session.showInitialVisits();
 
 setHeaderUsername();

@@ -61,6 +61,7 @@ const service = (function createServiceFunctions() {
       table.style.display = "block";
     }
 
+    row.classList.add("table__row");
     dateCell.classList.add("table__cell");
     serviceCell.classList.add("table__cell");
   }
@@ -161,8 +162,6 @@ const service = (function createServiceFunctions() {
 
   function hideTableIfLeftEmpty() {
     const table = document.getElementsByClassName("upcoming__table")[0];
-
-    console.log(table.rows.length);
 
     if (table.rows.length < 2) table.style.display = "none";
   }

@@ -359,9 +359,11 @@ table {
       display: block; } }
   .account__container {
     padding: 16px;
-    padding-left: 32px; }
+    padding-left: 32px;
+    margin: 0 auto; }
   .account__heading {
-    margin-bottom: 16px; }
+    margin-bottom: 16px;
+    text-align: center; }
 
 .table {
   margin-bottom: 16px;
@@ -371,8 +373,13 @@ table {
   border: 1px solid black;
   padding: 8px; }
 
-.previous__table-header {
-  padding-bottom: 16px; }
+.previous__table-header,
+.upcoming__table-header {
+  padding-bottom: 16px;
+  background-color: #74a1db; }
+
+.table__row:nth-child(3n) > .table__cell {
+  background-color: #91b8eb; }
 
 .phone__hint {
   display: block;
@@ -484,7 +491,7 @@ table {
     padding: 0 16px; }
   .spa__name {
     margin-bottom: 16px;
-    font-size: 18px;
+    font-size: 22px;
     text-align: center; }
   @media only screen and (max-width: 480px) {
     .spa__description {
