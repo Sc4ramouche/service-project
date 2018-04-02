@@ -20,7 +20,7 @@ General logic of the application is in the _app.js_ file. For the sake's of the 
 
 After some time on working on the final project I've discovered that module pattern is not relevant for this kind of project as files significantly increased in size.
 
-We use components when we work with frameworks like React.js and we keep all the logic incapsulated in the component. But as soon as I didn't use frameworks in this project I would be grateful on some advice on how to structure your project when you work with plain JavaScript. You can reach me in Slack.
+We use components when we work with frameworks like React.js and we keep all the logic incapsulated in the component. But as soon as I didn't use frameworks in this project I would be grateful on some advice on how to structure your project when you work with plain JavaScript. I can be reached at Slack.
 
 Tools used:
 * Gulp
