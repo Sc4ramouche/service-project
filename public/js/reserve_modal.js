@@ -12,7 +12,6 @@ reserveModalClose.onclick = function() {
 
 window.onclick = function() {
   if (event.target == reserveModal) {
-    loginModal.style.display = "none";
     reserveModal.style.display = "none";  
   }
 }
