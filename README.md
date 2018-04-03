@@ -1,11 +1,12 @@
 ## Final project
 
 For the final project there were "spa" theme chosen and simple markup created.
+Deployed at: https://sc4ramouche.github.io/service-project/index.html
 
 List of primary requirements:
 * implement service reservation;
 * impelement personal area, where user can see previous visits and cancel the upcoming ones;
-* Authorization to personal area;
+* authorization to personal area;
 
 The above-mentioned requirements were impelemented with localStorage. User information is stored in "users" property of the localStorage. To see it's structure run the following in the console:
 
