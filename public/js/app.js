@@ -115,7 +115,7 @@ const session = (function createSession() {
     let users = localStorage.getObj('users');
     let currentUser = users[localStorage.currentUserId];
 
-    if (users !== null) {
+    if (users !== null && currentUser !== undefined) {
       if (currentUser.services !== undefined) {
         currentUser.services.forEach((value, index) => {
           let tableDate = value.date;
