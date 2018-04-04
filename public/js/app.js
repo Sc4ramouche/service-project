@@ -98,7 +98,7 @@ const session = (function createSession() {
   }
 
   function updateUpcomingVisits() {
-    let users = JSON.parse(localStorage.users);
+    let users = localStorage.getObj('users');
     let currentUser = users[localStorage.currentUserId];
 
     if (currentUser.services !== undefined) {
@@ -112,7 +112,7 @@ const session = (function createSession() {
   }
 
   function showInitialVisits() {
-    let users = JSON.parse(localStorage.users);
+    let users = localStorage.getObj('users');
     let currentUser = users[localStorage.currentUserId];
 
     if (users !== null) {
