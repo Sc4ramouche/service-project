@@ -6,8 +6,11 @@
 }
 
 .register__error-agree {
-  text-align: center;
   margin-bottom: 24px;
+}
+
+.reserve__fill-error {
+  margin-bottom: 16px;
 }
 
 .login__error-email,
@@ -18,6 +21,8 @@
 .register__error-email-short,
 .register__error-password,
 .register__error-match,
-.register__error-agree {
+.register__error-agree,
+.reserve__fill-error {
   display: none;
+  text-align: center;
 }

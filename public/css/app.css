@@ -91,8 +91,10 @@ table {
   margin-left: 24px; }
 
 .register__error-agree {
-  text-align: center;
   margin-bottom: 24px; }
+
+.reserve__fill-error {
+  margin-bottom: 16px; }
 
 .login__error-email,
 .login__error-password,
@@ -102,8 +104,10 @@ table {
 .register__error-email-short,
 .register__error-password,
 .register__error-match,
-.register__error-agree {
-  display: none; }
+.register__error-agree,
+.reserve__fill-error {
+  display: none;
+  text-align: center; }
 
 .header__container {
   display: flex;
@@ -523,12 +527,12 @@ table {
   .promo__button {
     display: block;
     margin: 0 auto;
-    width: 20%;
+    max-width: 50%;
     background-color: lightsteelblue;
     color: black; }
     @media only screen and (max-width: 480px) {
       .promo__button {
-        width: 50%; } }
+        max-width: 80%; } }
   .promo__button:hover {
     background-color: lightseagreen; }
 

@@ -35,12 +35,12 @@
   &__button {
     display: block;
     margin: 0 auto;
-    width: 20%;
+    max-width: 50%;
     background-color: lightsteelblue;
     color: black;
 
     @include respond-to(handhelds) {
-      width: 50%;
+      max-width: 80%;
     }
   }
 

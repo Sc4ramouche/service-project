@@ -40,6 +40,7 @@ const session = (function createSession() {
     const users = localStorage.getObj('users');
     const userNameOrEmail = document.getElementsByClassName('login__email')[0].value.toLowerCase();
     const userPassword = document.getElementsByClassName('login__password')[0].value.toLowerCase();
+    let username = '';
 
     let usernameExists = false;
     let correctPassword = false;
@@ -48,16 +49,17 @@ const session = (function createSession() {
     if (users !== null) {
       for (let userId = 0; userId < users.length; userId++) {
         if (users[userId].username.toLowerCase() === userNameOrEmail
-          || users[userId].email.toLowerCase === userNameOrEmail) {
+          || users[userId].email.toLowerCase() === userNameOrEmail) {
           usernameExists = true;
           rememberUser = userId;
+          username = users[userId].username;
           break;
         }
       }
     }
 
     correctPassword = service.checkLoginErrors(usernameExists, users, rememberUser, userPassword, correctPassword);
-    if (correctPassword && usernameExists) service.loggingIn(userNameOrEmail, rememberUser);
+    if (correctPassword && usernameExists) service.loggingIn(username, rememberUser);
   }
 
   function createUser() {
@@ -92,9 +94,12 @@ const session = (function createSession() {
     if (service.checkPhoneNumber(phoneNumber) && serviceItem.date !== '') {
       service.writeReservationToLocalStorage(users, id, phoneNumber, serviceItem);
       session.updateUpcomingVisits();
-    }
 
-    document.getElementsByClassName('reserve__modal')[0].style.display = "none";
+      document.getElementsByClassName('reserve__modal')[0].style.display = "none";
+      document.getElementsByTagName('body')[0].style.position = "static";
+    } else {
+      document.getElementsByClassName('reserve__fill-error')[0].style.display = "block";
+    }
   }
 
   function updateUpcomingVisits() {
@@ -112,7 +117,7 @@ const session = (function createSession() {
   }
 
   function showInitialVisits() {
-    let users = localStorage.getObj('users');    
+    let users = localStorage.getObj('users');
 
     if (users !== null) {
       let currentUser = users[localStorage.currentUserId];
@@ -133,7 +138,6 @@ const session = (function createSession() {
     const tableRow = service.getRowToProcess(cancelButtonId);
 
     service.writeDataToEnsureModal(cancelButtonId);
-
     service.evokeEnsureModal(cancelButtonId);
   }
 
@@ -152,7 +156,7 @@ const session = (function createSession() {
     let inputDate = document.getElementsByClassName('reserve__date')[0];
     let currentDate = new Date();
     let plus30Days = new Date(currentDate.setDate(currentDate.getDate() + 30));
-    // let maxDate = transformDateForInput(new Date());
+
     inputDate.setAttribute('min', String(service.transformDateForInput(new Date())));
     inputDate.setAttribute('max', String(service.transformDateForInput(plus30Days)));
   }

@@ -73,7 +73,7 @@ const service = (function createServiceFunctions() {
   function writeServiceToTable(date, service, index) {
     let whichTable = '';
 
-    if (new Date(date) < new Date()) {
+    if ( (new Date(date)).getDate() < (new Date()).getDate() ) {
       table = document.getElementsByClassName('previous__table')[0];
       whichTable = 'previous';
     } else {
