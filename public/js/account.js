@@ -6,7 +6,7 @@ session.setInputDate();
 session.showInitialVisits();
 
 if (localStorage.logged === "" || localStorage.logged === undefined) {
-  window.location.replace("index.html");
+  window.location.replace("../");
 }
 
 // modal windows

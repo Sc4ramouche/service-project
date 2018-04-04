@@ -47,7 +47,7 @@ const service = (function createServiceFunctions() {
     localStorage.logged = "";
     setHeaderUsername();
     console.log('l');
-    window.location.replace("index.html");
+    window.location.replace("../");
   }
 
   function setHeaderUsername() {
@@ -276,7 +276,7 @@ const service = (function createServiceFunctions() {
     headerUser.textContent = usernameOrEmail;
     localStorage.logged = usernameOrEmail;
     localStorage.currentUserId = userId;
-    window.location.href = "account.html";
+    window.location.href = "./account";
   }
 
   function checkPasswordLength(value) {
