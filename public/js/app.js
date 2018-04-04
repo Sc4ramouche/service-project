@@ -162,7 +162,7 @@ const session = (function createSession() {
   }
 
   function redirect() {
-    window.location.replace("account.html");
+    window.location.replace("../account");
   }
 
   return {

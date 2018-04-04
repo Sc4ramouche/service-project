@@ -38,8 +38,8 @@ document.getElementById("defaultOpen").click();
 if (localStorage.logged !== "" && localStorage.logged !== null) {
   const promoButton = document.getElementsByClassName('promo__button')[0];
   promoButton.innerHTML = `Go to your Personal Area`;
-  
+
   promoButton.onclick = function () {
-    window.location.replace("account.html");
+    window.location.replace("./account");
   }
 }
