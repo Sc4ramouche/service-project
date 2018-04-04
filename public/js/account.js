@@ -20,8 +20,9 @@ document.getElementsByClassName("modal__close")[0].onclick = function () {
   document.getElementsByTagName("body")[0].style.position = "static";
 };
 
-window.onclick = function () {
-  if (event.target == document.getElementsByClassName("reserve__modal")[0]) {
+window.onclick = function (evt) {
+  if (!evt) evt = window.event;
+  if (evt.target == document.getElementsByClassName("reserve__modal")[0]) {
     document.getElementsByClassName("reserve__modal")[0].style.display = "none";
     document.getElementsByTagName("body")[0].style.position = "static";
   }

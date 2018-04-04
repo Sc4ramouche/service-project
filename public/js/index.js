@@ -25,8 +25,9 @@ modalClose.onclick = function () {
   document.getElementsByTagName("body")[0].style.position = "static";
 };
 
-window.onclick = function () {
-  if (event.target == loginModal) {
+window.onclick = function (evt) {
+  if (!evt) evt = window.event;
+  if (evt.target == loginModal) {
     loginModal.style.display = "none";
     document.getElementsByTagName("body")[0].style.position = "static";
   }
