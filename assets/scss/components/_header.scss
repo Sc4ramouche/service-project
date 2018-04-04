@@ -6,7 +6,12 @@
     background-color: #46ACC2;
     padding-top: 16px;
 
-    @include respond-to("handhelds") {
+    @include respond-to(handhelds) {
+      display: block;
+      padding-bottom: 8px;
+    }
+
+    @include respond-to(medium-screens) {
       display: block;
       padding-bottom: 8px;
     }
@@ -24,6 +29,9 @@
     @include respond-to(handhelds) {
       padding-top: 8px;
     }
+    @include respond-to(medium-screens) {
+      padding-top: 8px;
+    }
   }
 
   &__login {
@@ -39,7 +47,6 @@
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
     background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.2);
   }
@@ -92,6 +99,14 @@
         width: 100%;
         box-sizing: border-box;
       }
+
+      @include respond-to(medium-screens) {
+        margin-right: auto;
+        margin-left: auto;
+        padding: 8px 16px;
+        width: 100%;
+        box-sizing: border-box;
+      }
     }
 
     &-link:hover {
@@ -110,6 +125,12 @@
   &__list.responsive .nav__list-link {
 
     @include respond-to(handhelds) {
+      float: none;
+      display: block;
+      text-align: center;
+    }
+
+    @include respond-to(medium-screens) {
       float: none;
       display: block;
       text-align: center;
@@ -165,15 +186,20 @@
   &__content {
     position: relative;
     background-color: #fefefe;
-    margin: 10% auto;
+    margin: 8% auto;
     padding: 16px 40px;
     padding-top: 32px;
     border: 1px solid #888;
     width: 50%;
 
     @include respond-to(handhelds) {
-      padding: 8px 16px;
+      padding: 32px 24px;
       width: 80%;
+    }
+
+    @include respond-to(medium-screens) {
+      padding: 32px 24px;
+      width: 60%;
     }
   }
 
@@ -185,6 +211,16 @@
     right: 14px;
     font-size: 28px;
     font-weight: bold;
+
+    @include respond-to(medium-screens) {
+      top: 0;
+      right: 8px;
+    }
+
+    @include respond-to(handhelds) {
+      top: 0;
+      right: 8px;
+    }
   }
 
   &__close:hover,
@@ -255,7 +291,7 @@
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 1024px) {
   .nav__list-link {
     display: none;
   }

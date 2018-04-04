@@ -4,7 +4,7 @@ const session = (function createSession() {
   function checkRegister() {
     service.removeErrors();
 
-    const storageArray = localStorage.getObj('users');
+    const users = localStorage.getObj('users');
     const userName = document.getElementsByClassName('register__username')[0].value.toLowerCase();
     const userEmail = document.getElementsByClassName('register__email')[0].value.toLowerCase();
     const userPassword = document.getElementsByClassName('register__password')[0].value;
@@ -14,13 +14,17 @@ const session = (function createSession() {
     let passwordMatch = false;
     let agreement = document.getElementsByClassName('register__agree')[0].checked;
 
-    storageArray.forEach((value, index) => {
-      for (let key in value) {
-        if (key === "username" && value[key] === userName) uniqueUser = false;
-        if (key === "email" && userEmail === value[key]) uniqueEmail = false;
-        if (key === "password") passwordMatch = service.checkPasswordMatch(userPassword);
-      }
-    });
+    if (users !== null) {
+      users.forEach((value, index) => {
+        for (let key in value) {
+          if (key === "username" && value[key] === userName) uniqueUser = false;
+          if (key === "email" && userEmail === value[key]) uniqueEmail = false;
+          if (key === "password") passwordMatch = service.checkPasswordMatch(userPassword);
+        }
+      });
+    } else {
+      passwordMatch = service.checkPasswordMatch(userPassword);
+    }
 
     service.checkUsernameErrors(userName, uniqueUser);
     service.checkEmailErrors(userEmail, uniqueEmail);
@@ -41,13 +45,15 @@ const session = (function createSession() {
     let correctPassword = false;
     let rememberUser = 0;
 
-    for (let userId = 0; userId < users.length; userId++) {
-      if (users[userId].username.toLowerCase() === userNameOrEmail 
-       || users[userId].email.toLowerCase === userNameOrEmail) {
-         usernameExists = true;
-         rememberUser = userId;
-         break;
-       }
+    if (users !== null) {
+      for (let userId = 0; userId < users.length; userId++) {
+        if (users[userId].username.toLowerCase() === userNameOrEmail
+          || users[userId].email.toLowerCase === userNameOrEmail) {
+          usernameExists = true;
+          rememberUser = userId;
+          break;
+        }
+      }
     }
 
     correctPassword = service.checkLoginErrors(usernameExists, users, rememberUser, userPassword, correctPassword);
@@ -85,9 +91,9 @@ const session = (function createSession() {
 
     if (service.checkPhoneNumber(phoneNumber) && serviceItem.date !== '') {
       service.writeReservationToLocalStorage(users, id, phoneNumber, serviceItem);
+      session.updateUpcomingVisits();
     }
 
-    session.updateUpcomingVisits();
     document.getElementsByClassName('reserve__modal')[0].style.display = "none";
   }
 
@@ -168,13 +174,7 @@ const session = (function createSession() {
 
 })();
 
-const loginBtnSubmit = document.getElementsByClassName('login__submit')[0];
-loginBtnSubmit.addEventListener('click', session.checkLogin);
-
-const registerBtn = document.getElementsByClassName('register__submit')[0];
-registerBtn.addEventListener('click', session.checkRegister);
-
 let signOff = document.getElementsByClassName('sign-out__button')[0];
-signOff.addEventListener('click', signOut);
+signOff.addEventListener('click', service.signOut);
 
-setHeaderUsername();
+service.setHeaderUsername();

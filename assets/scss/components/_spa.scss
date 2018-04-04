@@ -20,6 +20,9 @@
     @include respond-to(handhelds) {
       grid-template-columns: 1fr;
     }
+    @include respond-to(medium-screens) {
+      grid-template-columns: 1fr;
+    }
   }
 
   &__item {
@@ -27,6 +30,9 @@
     justify-content: space-between;
 
     @include respond-to(handhelds) {
+      display: block;
+    }
+    @include respond-to(medium-screens) {
       display: block;
     }
   }
@@ -42,9 +48,6 @@
   }
 
   &__description {
-    
-    @include respond-to(handhelds) {
-      margin-bottom: 16px;
-    }
+    margin-bottom: 16px;
   }
 }

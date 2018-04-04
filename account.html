@@ -24,7 +24,7 @@
           <a href="#" class="nav__list-link nav__menu" onclick="service.responsive()">
             <li class="nav__list-item">Menu</li>
           </a>
-          <a href="#" class="nav__list-link">
+          <a href="index.html" class="nav__list-link">
             <li class="nav__list-item">Home</li>
           </a>
           <a href="#" class="nav__list-link">
@@ -43,55 +43,6 @@
         <div class="header__user">
           <a href="./account.html" class="user__name"></a>
           <button type="button" class="sign-out__button login__button--usual">Sign out</button>
-        </div>
-        <div class="header__modal">
-          <div class="modal__content">
-            <span class="modal__close">&times;</span>
-            <div class="modal__tabs">
-              <button class="tabs__button" id="defaultOpen" onclick="openTab(event, 'modal__login')">Login</button>
-              <button class="tabs__button" onclick="openTab(event, 'modal__register')">Register</button>
-            </div>
-
-            <div class="modal__login tabs-item">
-              <label for="login__email" class="form__label email__label-login">Username or Email:</label>
-              <p class="login__error-email error">No user with such Email or username!</p>
-              <input type="email" class="login__email form__text" id="login__email" placeholder="joedoe@mail.com" required>
-
-              <label for="login__password" class="form__label password__label-login">Password:</label>
-              <p class="login__error-password error">Wrong password!</p>
-              <input type="password" class="login__password form__text" placeholder="pass" required>
-
-              <input type="checkbox" class="login__remember" id="login__remember">
-              <label for="login__remember" class="form__label">Remember me?</label>
-
-              <input type="submit" class="login__submit login__button--usual form__submit-btn" value="Login">
-            </div>
-
-            <div class="modal__register tabs-item">
-              <label for="register__username" class="form__label username__label-register">Username:</label>
-              <p class="register__error-username error">Sorry, this username is already in use!</p>
-              <p class="register__error-username-short error">Sorry, username is too short!</p>
-              <input type="text" class="register__username form__text" id="register__username" placeholder="myusername" required>
-
-              <label for="register__email" class="form__label email__label-register">Email adress:</label>
-              <p class="register__error-email error">Sorry, this Email is already in use!</p>
-              <input type="email" class="register__email form__text" id="register__email" placeholder="joedoe@mail.com" required>
-
-              <label for="register__pasword" class="form__label password__label-register">Password:</label>
-              <p class="register__error-password error">Password has to be at least 5 characters!</p>
-              <input type="password" class="register__password form__text" id="register__password" placeholder="pass" required>
-
-              <label for="register__password-repeat" class="form__label password-repeat__label-register">Repeat password:</label>
-              <p class="register__error-match error">Password doesn't match!</p>
-              <input type="password" class="register__password-repeat form__text" id="register__password-repeat" placeholder="repeat" required>
-
-              <input type="checkbox" class="register__agree" id="register__agree">
-              <label for="register__agree" class="form__label agree__label-register">I accept the terms of use</label>
-              <p class="register__error-agree error">You must accept the terms of use!</p>
-
-              <input type="submit" class="register__submit login__button--usual form__submit-btn" value="Register">
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -129,7 +80,7 @@
               <option value="Massage">Massage Therapy — 50$</option>
               <option value="Facials">Facials — 25$</option>
               <option value="Body Treatments">Body Treatments — 100$</option>
-              <option value="Makeup & Waxing">Makeup & Waxing 50$</option>
+              <option value="Makeup & Waxing">Makeup &amp; Waxing 50$</option>
             </select>
 
             <label for="reserve__date" class="form__label date__label-reserve">Date:</label>
@@ -200,7 +151,7 @@
 
       <div class="sidebar__service">
         <div class="service__text">
-          <h4 class="service__name">Makeup & Waxing</h4>
+          <h4 class="service__name">Makeup &amp; Waxing</h4>
           <p class="service__description">Our full-service spa offers makeup and waxing services.</p>
         </div>
         <div class="service__image">
@@ -222,7 +173,7 @@
       <a href="#" class="footer__nav-link">Massage</a>
       <a href="#" class="footer__nav-link">Facials</a>
       <a href="#" class="footer__nav-link">Body Treatments</a>
-      <a href="#" class="footer__nav-link">Makeup & Waxing</a>
+      <a href="#" class="footer__nav-link">Makeup &amp; Waxing</a>
     </nav>
     <ul class="footer__list">
       <li class="footer__list-item">Join us!</li>
@@ -239,15 +190,8 @@
   </footer>
 
   <script src="public/js/service.js"></script>
-  <script src="public/js/set_username_in_header.js"></script>
   <script src="public/js/app.js"></script>
   <script src="public/js/account.js"></script>
-  <script src="public/js/reserve_modal.js"></script>
-  <script src="public/js/tabs.js"></script>
-
-  <script>
-    document.getElementById("defaultOpen").click();
-  </script>
 
 </body>
 

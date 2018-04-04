@@ -21,10 +21,10 @@
       </a>
       <nav class="header__nav">
         <ul class="nav__list">
-          <a href="#" class="nav__list-link nav__menu" onclick="responsive()">
+          <a href="#" class="nav__list-link nav__menu" onclick="service.responsive()">
             <li class="nav__list-item">Menu</li>
           </a>
-          <a href="#" class="nav__list-link">
+          <a href="index.html" class="nav__list-link">
             <li class="nav__list-item">Home</li>
           </a>
           <a href="#" class="nav__list-link">
@@ -48,8 +48,8 @@
           <div class="modal__content">
             <span class="modal__close">&times;</span>
             <div class="modal__tabs">
-              <button class="tabs__button" id="defaultOpen" onclick="openTab(event, 'modal__login')">Login</button>
-              <button class="tabs__button" onclick="openTab(event, 'modal__register')">Register</button>
+              <button class="tabs__button" id="defaultOpen" onclick="service.openTab(event, 'modal__login')">Login</button>
+              <button class="tabs__button" onclick="service.openTab(event, 'modal__register')">Register</button>
             </div>
 
             <div class="modal__login tabs-item">
@@ -142,7 +142,7 @@
 
       <div class="spa__item">
         <div class="spa__text">
-          <h4 class="spa__name">Makeup & Waxing</h4>
+          <h4 class="spa__name">Makeup &amp; Waxing</h4>
           <p class="spa__description">Our full-service spa offers makeup and waxing services.</p>
         </div>
         <div class="spa__image">
@@ -164,7 +164,7 @@
       <a href="#" class="footer__nav-link">Massage</a>
       <a href="#" class="footer__nav-link">Facials</a>
       <a href="#" class="footer__nav-link">Body Treatments</a>
-      <a href="#" class="footer__nav-link">Makeup & Waxing</a>
+      <a href="#" class="footer__nav-link">Makeup &amp;& Waxing</a>
     </nav>
     <ul class="footer__list">
       <li class="footer__list-item">Join us!</li>
@@ -181,13 +181,8 @@
   </footer>
 
   <script src="public/js/service.js"></script>
-  <script src="public/js/set_username_in_header.js"></script>
   <script src="public/js/app.js"></script>
-  <script src="public/js/modal.js"></script>
-  <script src="public/js/tabs.js"></script>
-  <script>
-    document.getElementById("defaultOpen").click();
-  </script>
+  <script src="public/js/index.js"></script>
 
 </body>
 

@@ -25,7 +25,9 @@
 
 .table {
   margin-bottom: 16px;
-  border-radius: 8px;
+  margin-right: auto;
+  margin-left: auto;
+  display: table;
 }
 
 .table__cell {
@@ -65,6 +67,10 @@
   background-color: lightseagreen;
   border-radius: 8px;
   padding: 0px 16px;;
+}
+
+.cancel__button:hover {
+  background-color: rgb(37, 151, 146);
 }
 
 .ensure {

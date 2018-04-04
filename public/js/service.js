@@ -26,6 +26,44 @@ const service = (function createServiceFunctions() {
     let plus30days = new Date(date.setDate(date.getDate() + 30));
   }
 
+  function openTab(evt, tabName) {
+    let tabcontent, tablinks;
+  
+    tabcontent = document.getElementsByClassName("tabs-item");
+    for (let i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";  
+    }
+  
+    tablinks = document.getElementsByClassName("tabs__button");
+    for (let i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+  
+    document.getElementsByClassName(tabName)[0].style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+
+  function signOut() { 
+    localStorage.logged = "";
+    setHeaderUsername();
+    console.log('l');
+    window.location.replace("index.html");
+  }
+
+  function setHeaderUsername() {
+    let user = document.getElementsByClassName('header__user')[0];
+    let login = document.getElementsByClassName('login__button')[0];
+    let userName = document.getElementsByClassName('user__name')[0];
+    if ( localStorage.logged ) {
+      user.style.display = "block";
+      login.style.display = "none";
+      userName.textContent = "Greetings, " + localStorage.logged[0].toUpperCase() + localStorage.logged.slice(1) + "!";
+    } else {
+      user.style.display = "none";
+      login.style.display = "block";
+    }
+  }
+
   function checkPhoneNumber(number) {
     let myRe = /^\d\s[\(]\d{3}[\)]\s\d{3}[\-]\d{2}[\-]\d{2}$/;
 
@@ -54,11 +92,11 @@ const service = (function createServiceFunctions() {
     if (whichTable === 'upcoming') {
       let cancelCell = row.insertCell(2);
       cancelCell.innerHTML = `<button type="button" class="cancel__button login__button--usual" id="${index}" onClick="session.cancelUpcomingVisits(this.id)">Cancel</button>`;
-      table.style.display = "block";
+      table.style.display = "table";
     }
 
     if (whichTable === 'previous') {
-      table.style.display = "block";
+      table.style.display = "table";
     }
 
     row.classList.add("table__row");
@@ -97,7 +135,7 @@ const service = (function createServiceFunctions() {
 
   function evokeEnsureModal(id) {
     const ensureBtn = document.getElementById(id);
-    const modalClose = document.getElementsByClassName("modal__close")[2];
+    const modalClose = document.getElementsByClassName("modal__close")[1];
     const ensureModal = document.getElementsByClassName("ensure__modal")[0];
     const leaveButton = document.getElementsByClassName("leave__button")[0];
   
@@ -370,6 +408,9 @@ const service = (function createServiceFunctions() {
   return {
     transformDateForInput,
     add30Days,
+    openTab,
+    signOut,
+    setHeaderUsername,
     checkPhoneNumber,
     writeServiceToTable,
     checkExistingServices,

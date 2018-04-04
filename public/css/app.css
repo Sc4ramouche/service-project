@@ -114,6 +114,10 @@ table {
     .header__container {
       display: block;
       padding-bottom: 8px; } }
+  @media only screen and (min-width: 481px) and (max-width: 1023px) {
+    .header__container {
+      display: block;
+      padding-bottom: 8px; } }
 
 .header__logo {
   text-decoration: none;
@@ -123,6 +127,9 @@ table {
   padding-top: 22px;
   flex-grow: 0; }
   @media only screen and (max-width: 480px) {
+    .header__nav {
+      padding-top: 8px; } }
+  @media only screen and (min-width: 481px) and (max-width: 1023px) {
     .header__nav {
       padding-top: 8px; } }
 
@@ -137,7 +144,6 @@ table {
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
   background-color: black;
   background-color: rgba(0, 0, 0, 0.2); }
 
@@ -175,6 +181,13 @@ table {
       padding: 8px 16px;
       width: 100%;
       box-sizing: border-box; } }
+  @media only screen and (min-width: 481px) and (max-width: 1023px) {
+    .nav__list-link {
+      margin-right: auto;
+      margin-left: auto;
+      padding: 8px 16px;
+      width: 100%;
+      box-sizing: border-box; } }
 
 .nav__list-link:hover {
   border-bottom: 1px solid antiquewhite; }
@@ -186,6 +199,12 @@ table {
       margin-right: auto; } }
 
 @media only screen and (max-width: 480px) {
+  .nav__list.responsive .nav__list-link {
+    float: none;
+    display: block;
+    text-align: center; } }
+
+@media only screen and (min-width: 481px) and (max-width: 1023px) {
   .nav__list.responsive .nav__list-link {
     float: none;
     display: block;
@@ -226,15 +245,19 @@ table {
   .modal__content {
     position: relative;
     background-color: #fefefe;
-    margin: 10% auto;
+    margin: 8% auto;
     padding: 16px 40px;
     padding-top: 32px;
     border: 1px solid #888;
     width: 50%; }
     @media only screen and (max-width: 480px) {
       .modal__content {
-        padding: 8px 16px;
+        padding: 32px 24px;
         width: 80%; } }
+    @media only screen and (min-width: 481px) and (max-width: 1023px) {
+      .modal__content {
+        padding: 32px 24px;
+        width: 60%; } }
   .modal__close {
     color: #aaa;
     position: absolute;
@@ -243,6 +266,14 @@ table {
     right: 14px;
     font-size: 28px;
     font-weight: bold; }
+    @media only screen and (min-width: 481px) and (max-width: 1023px) {
+      .modal__close {
+        top: 0;
+        right: 8px; } }
+    @media only screen and (max-width: 480px) {
+      .modal__close {
+        top: 0;
+        right: 8px; } }
   .modal__close:hover, .modal__close:focus {
     color: black;
     text-decoration: none;
@@ -295,7 +326,7 @@ table {
   margin-right: 16px;
   text-decoration: none; }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 1024px) {
   .nav__list-link {
     display: none; }
   .nav__menu {
@@ -310,7 +341,6 @@ table {
   box-sizing: border-box;
   width: 40%;
   padding: 16px;
-  padding-bottom: 0;
   background-color: lightsteelblue;
   border-left: 5px solid lightblue; }
   @media only screen and (min-width: 481px) and (max-width: 1023px) {
@@ -334,6 +364,8 @@ table {
     @media only screen and (max-width: 480px) {
       .sidebar__service {
         display: block; } }
+  .sidebar__service:last-child {
+    margin-bottom: 0; }
 
 .service__text {
   padding-right: 16px; }
@@ -349,6 +381,16 @@ table {
 .image__item {
   max-width: 280px;
   border-radius: 16px; }
+  @media only screen and (min-width: 481px) and (max-width: 1023px) {
+    .image__item {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; } }
+  @media only screen and (max-width: 480px) {
+    .image__item {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; } }
 
 .account {
   position: relative;
@@ -371,7 +413,9 @@ table {
 
 .table {
   margin-bottom: 16px;
-  border-radius: 8px; }
+  margin-right: auto;
+  margin-left: auto;
+  display: table; }
 
 .table__cell {
   border: 1px solid black;
@@ -405,6 +449,9 @@ table {
   background-color: lightseagreen;
   border-radius: 8px;
   padding: 0px 16px; }
+
+.cancel__button:hover {
+  background-color: #259792; }
 
 .ensure__modal {
   display: none;
@@ -498,10 +545,16 @@ table {
     @media only screen and (max-width: 480px) {
       .spa__container {
         grid-template-columns: 1fr; } }
+    @media only screen and (min-width: 481px) and (max-width: 1023px) {
+      .spa__container {
+        grid-template-columns: 1fr; } }
   .spa__item {
     display: flex;
     justify-content: space-between; }
     @media only screen and (max-width: 480px) {
+      .spa__item {
+        display: block; } }
+    @media only screen and (min-width: 481px) and (max-width: 1023px) {
       .spa__item {
         display: block; } }
   .spa__text {
@@ -510,9 +563,8 @@ table {
     margin-bottom: 16px;
     font-size: 22px;
     text-align: center; }
-  @media only screen and (max-width: 480px) {
-    .spa__description {
-      margin-bottom: 16px; } }
+  .spa__description {
+    margin-bottom: 16px; }
 
 .footer {
   width: 100%;
