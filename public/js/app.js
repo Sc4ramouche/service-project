@@ -112,10 +112,10 @@ const session = (function createSession() {
   }
 
   function showInitialVisits() {
-    let users = localStorage.getObj('users');
-    let currentUser = users[localStorage.currentUserId];
+    let users = localStorage.getObj('users');    
 
-    if (users !== null && currentUser !== undefined) {
+    if (users !== null) {
+      let currentUser = users[localStorage.currentUserId];
       if (currentUser.services !== undefined) {
         currentUser.services.forEach((value, index) => {
           let tableDate = value.date;
