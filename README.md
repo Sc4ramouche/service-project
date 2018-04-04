@@ -1,7 +1,8 @@
 ## Final project
 
 For the final project there were "spa" theme chosen and simple markup created.
-Deployed at: https://sc4ramouche.github.io/service-project/index.html
+
+Deployed at: https://sc4ramouche.github.io/service-project/
 
 List of primary requirements:
 * implement service reservation;
