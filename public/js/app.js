@@ -115,13 +115,15 @@ const session = (function createSession() {
     let users = JSON.parse(localStorage.users);
     let currentUser = users[localStorage.currentUserId];
 
-    if (currentUser.services !== undefined) {
-      currentUser.services.forEach((value, index) => {
-        let tableDate = value.date;
-        let tableService = value.service;
+    if (users !== null) {
+      if (currentUser.services !== undefined) {
+        currentUser.services.forEach((value, index) => {
+          let tableDate = value.date;
+          let tableService = value.service;
 
-        service.writeServiceToTable(tableDate, tableService, index);
-      });
+          service.writeServiceToTable(tableDate, tableService, index);
+        });
+      }
     }
 
     service.checkExistingServices();

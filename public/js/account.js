@@ -5,7 +5,7 @@ document.getElementsByClassName('make-reservation__button')[0].addEventListener(
 session.setInputDate();
 session.showInitialVisits();
 
-if (localStorage.logged === "") {
+if (localStorage.logged === "" || localStorage.logged === undefined) {
   window.location.replace("index.html");
 }
 
