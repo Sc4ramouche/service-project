@@ -80,7 +80,7 @@ table {
   @media only screen and (max-width: 480px) {
     .form__submit-btn {
       width: 70%; } }
-  @media only screen and (min-width: 481px) and (max-width: 1023px) {
+  @media only screen and (min-width: 481px) and (max-width: 1024px) {
     .form__submit-btn {
       width: 50%; } }
 
@@ -114,7 +114,7 @@ table {
     .header__container {
       display: block;
       padding-bottom: 8px; } }
-  @media only screen and (min-width: 481px) and (max-width: 1023px) {
+  @media only screen and (min-width: 481px) and (max-width: 1024px) {
     .header__container {
       display: block;
       padding-bottom: 8px; } }
@@ -129,7 +129,7 @@ table {
   @media only screen and (max-width: 480px) {
     .header__nav {
       padding-top: 8px; } }
-  @media only screen and (min-width: 481px) and (max-width: 1023px) {
+  @media only screen and (min-width: 481px) and (max-width: 1024px) {
     .header__nav {
       padding-top: 8px; } }
 
@@ -181,7 +181,7 @@ table {
       padding: 8px 16px;
       width: 100%;
       box-sizing: border-box; } }
-  @media only screen and (min-width: 481px) and (max-width: 1023px) {
+  @media only screen and (min-width: 481px) and (max-width: 1024px) {
     .nav__list-link {
       margin-right: auto;
       margin-left: auto;
@@ -204,7 +204,7 @@ table {
     display: block;
     text-align: center; } }
 
-@media only screen and (min-width: 481px) and (max-width: 1023px) {
+@media only screen and (min-width: 481px) and (max-width: 1024px) {
   .nav__list.responsive .nav__list-link {
     float: none;
     display: block;
@@ -217,6 +217,10 @@ table {
   outline: none;
   display: none; }
   @media only screen and (max-width: 480px) {
+    .login__button {
+      display: block;
+      margin: 0 auto; } }
+  @media only screen and (min-width: 481px) and (max-width: 1024px) {
     .login__button {
       display: block;
       margin: 0 auto; } }
@@ -254,7 +258,7 @@ table {
       .modal__content {
         padding: 32px 24px;
         width: 80%; } }
-    @media only screen and (min-width: 481px) and (max-width: 1023px) {
+    @media only screen and (min-width: 481px) and (max-width: 1024px) {
       .modal__content {
         padding: 32px 24px;
         width: 60%; } }
@@ -266,7 +270,7 @@ table {
     right: 14px;
     font-size: 28px;
     font-weight: bold; }
-    @media only screen and (min-width: 481px) and (max-width: 1023px) {
+    @media only screen and (min-width: 481px) and (max-width: 1024px) {
       .modal__close {
         top: 0;
         right: 8px; } }
@@ -343,7 +347,7 @@ table {
   padding: 16px;
   background-color: lightsteelblue;
   border-left: 5px solid lightblue; }
-  @media only screen and (min-width: 481px) and (max-width: 1023px) {
+  @media only screen and (min-width: 481px) and (max-width: 1024px) {
     .sidebar {
       width: 100%;
       border-left: none;
@@ -381,7 +385,7 @@ table {
 .image__item {
   max-width: 280px;
   border-radius: 16px; }
-  @media only screen and (min-width: 481px) and (max-width: 1023px) {
+  @media only screen and (min-width: 481px) and (max-width: 1024px) {
     .image__item {
       display: block;
       margin-left: auto;
@@ -397,7 +401,7 @@ table {
   background-color: lightsteelblue;
   display: flex;
   justify-content: space-between; }
-  @media only screen and (min-width: 481px) and (max-width: 1023px) {
+  @media only screen and (min-width: 481px) and (max-width: 1024px) {
     .account {
       display: block; } }
   @media only screen and (max-width: 480px) {
@@ -545,7 +549,7 @@ table {
     @media only screen and (max-width: 480px) {
       .spa__container {
         grid-template-columns: 1fr; } }
-    @media only screen and (min-width: 481px) and (max-width: 1023px) {
+    @media only screen and (min-width: 481px) and (max-width: 1024px) {
       .spa__container {
         grid-template-columns: 1fr; } }
   .spa__item {
@@ -554,7 +558,7 @@ table {
     @media only screen and (max-width: 480px) {
       .spa__item {
         display: block; } }
-    @media only screen and (min-width: 481px) and (max-width: 1023px) {
+    @media only screen and (min-width: 481px) and (max-width: 1024px) {
       .spa__item {
         display: block; } }
   .spa__text {

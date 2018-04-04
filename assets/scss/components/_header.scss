@@ -152,6 +152,11 @@
       display: block;
       margin: 0 auto;
     }
+
+    @include respond-to(medium-screens) {
+      display: block;
+      margin: 0 auto;
+    }
   }
 
   &__button:hover {

@@ -6,7 +6,7 @@ $break-lg: 1024px;
     @media only screen and (max-width: $break-sm) { @content; }
   }
   @else if $media == medium-screens {
-    @media only screen and (min-width: $break-sm + 1) and (max-width: $break-lg - 1) { @content; }
+    @media only screen and (min-width: $break-sm + 1) and (max-width: $break-lg) { @content; }
   }
   @else if $media == wide-screens {
     @media only screen and (min-width: $break-lg) { @content; }
