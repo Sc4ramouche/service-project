@@ -46,8 +46,7 @@ const service = (function createServiceFunctions() {
   function signOut() { 
     localStorage.logged = "";
     setHeaderUsername();
-    console.log('l');
-    window.location.replace("../");
+    window.location.replace("./");
   }
 
   function setHeaderUsername() {
