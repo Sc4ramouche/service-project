@@ -1,6 +1,4 @@
-/*eslint wrap-iife: false*/
 const session = (function createSession() {
-
   function checkRegister() {
     service.removeErrors();
 
@@ -12,14 +10,14 @@ const session = (function createSession() {
     let uniqueUser = true;
     let uniqueEmail = true;
     let passwordMatch = false;
-    let agreement = document.getElementsByClassName('register__agree')[0].checked;
+    const agreement = document.getElementsByClassName('register__agree')[0].checked;
 
     if (users !== null) {
       users.forEach((value, index) => {
         for (let key in value) {
-          if (key === "username" && value[key] === userName) uniqueUser = false;
-          if (key === "email" && userEmail === value[key]) uniqueEmail = false;
-          if (key === "password") passwordMatch = service.checkPasswordMatch(userPassword);
+          if (key === 'username' && value[key] === userName) uniqueUser = false;
+          if (key === 'email' && userEmail === value[key]) uniqueEmail = false;
+          if (key === 'password') passwordMatch = service.checkPasswordMatch(userPassword);
         }
       });
     } else {
@@ -63,21 +61,21 @@ const session = (function createSession() {
   }
 
   function createUser() {
-    let userName = document.getElementsByClassName('register__username')[0].value.toLowerCase();
-    let userEmail = document.getElementsByClassName('register__email')[0].value.toLowerCase();
-    let userPassword = document.getElementsByClassName('register__password')[0].value;
+    const userName = document.getElementsByClassName('register__username')[0].value.toLowerCase();
+    const userEmail = document.getElementsByClassName('register__email')[0].value.toLowerCase();
+    const userPassword = document.getElementsByClassName('register__password')[0].value;
 
     const userItem = {
       username: userName,
       email: userEmail,
-      password: userPassword
+      password: userPassword,
     };
 
     service.writeUserToLocalStorage(userItem);
 
     localStorage.logged = userName;
     localStorage.currentUserId = JSON.parse(localStorage.users).length - 1;
-    redirect();
+    window.location.replace('./account');
     service.setHeaderUsername();
   }
 
@@ -88,43 +86,43 @@ const session = (function createSession() {
 
     const serviceItem = {
       service: document.getElementsByClassName('reserve__service')[0].value,
-      date: document.getElementsByClassName('reserve__date')[0].value
+      date: document.getElementsByClassName('reserve__date')[0].value,
     };
 
     if (service.checkPhoneNumber(phoneNumber) && serviceItem.date !== '') {
       service.writeReservationToLocalStorage(users, id, phoneNumber, serviceItem);
       session.updateUpcomingVisits();
 
-      document.getElementsByClassName('reserve__modal')[0].style.display = "none";
-      document.getElementsByTagName('body')[0].style.position = "static";
+      document.getElementsByClassName('reserve__modal')[0].style.display = 'none';
+      document.getElementsByTagName('body')[0].style.position = 'static';
     } else {
-      document.getElementsByClassName('reserve__fill-error')[0].style.display = "block";
+      document.getElementsByClassName('reserve__fill-error')[0].style.display = 'block';
     }
   }
 
   function updateUpcomingVisits() {
-    let users = localStorage.getObj('users');
-    let currentUser = users[localStorage.currentUserId];
+    const users = localStorage.getObj('users');
+    const currentUser = users[localStorage.currentUserId];
 
     if (currentUser.services !== undefined) {
-      let tableDate = currentUser.services[currentUser.services.length - 1].date;
-      let tableService = currentUser.services[currentUser.services.length - 1].service;
+      const tableDate = currentUser.services[currentUser.services.length - 1].date;
+      const tableService = currentUser.services[currentUser.services.length - 1].service;
 
       service.writeServiceToTable(tableDate, tableService);
-    };
+    }
 
     service.checkExistingServices();
   }
 
   function showInitialVisits() {
-    let users = localStorage.getObj('users');
+    const users = localStorage.getObj('users');
 
     if (users !== null) {
-      let currentUser = users[localStorage.currentUserId];
+      const currentUser = users[localStorage.currentUserId];
       if (currentUser.services !== undefined) {
         currentUser.services.forEach((value, index) => {
-          let tableDate = value.date;
-          let tableService = value.service;
+          const tableDate = value.date;
+          const tableService = value.service;
 
           service.writeServiceToTable(tableDate, tableService, index);
         });
@@ -135,52 +133,44 @@ const session = (function createSession() {
   }
 
   function cancelUpcomingVisits(cancelButtonId) {
-    const tableRow = service.getRowToProcess(cancelButtonId);
-
     service.writeDataToEnsureModal(cancelButtonId);
     service.evokeEnsureModal(cancelButtonId);
   }
 
   function removeUpcomingService() {
-    const ensureModal = document.getElementsByClassName("ensure__modal")[0];
+    const ensureModal = document.getElementsByClassName('ensure__modal')[0];
 
-    const tableRow = service.getRowToProcess(ensureModal.getAttribute("cancelid"));
+    const tableRow = service.getRowToProcess(ensureModal.getAttribute('cancelid'));
 
     service.removeTableRow(tableRow);
     service.removeFromLocalStorage(tableRow);
-    document.getElementsByClassName("ensure__modal")[0].style.display = "none";
+    document.getElementsByClassName('ensure__modal')[0].style.display = 'none';
     service.hideTableIfLeftEmpty();
   }
 
   function setInputDate() {
-    let inputDate = document.getElementsByClassName('reserve__date')[0];
-    let currentDate = new Date();
-    let plus30Days = new Date(currentDate.setDate(currentDate.getDate() + 30));
+    const inputDate = document.getElementsByClassName('reserve__date')[0];
+    const currentDate = new Date();
+    const plus30Days = new Date(currentDate.setDate(currentDate.getDate() + 30));
 
     inputDate.setAttribute('min', String(service.transformDateForInput(new Date())));
     inputDate.setAttribute('max', String(service.transformDateForInput(plus30Days)));
-  }
-
-  function redirect() {
-    window.location.replace("./account");
   }
 
   return {
     createUser,
     checkRegister,
     checkLogin,
-    redirect,
     setInputDate,
     makeReservation,
     updateUpcomingVisits,
     showInitialVisits,
     cancelUpcomingVisits,
-    removeUpcomingService
+    removeUpcomingService,
   };
-
 })();
 
-let signOff = document.getElementsByClassName('sign-out__button')[0];
+const signOff = document.getElementsByClassName('sign-out__button')[0];
 signOff.addEventListener('click', service.signOut);
 
 service.setHeaderUsername();

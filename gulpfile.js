@@ -1,6 +1,8 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass');
 
+gulp.task('default', ['sass:watch']);
+
 gulp.task('sass', function() {
   gulp.src('./assets/scss/**/*.scss')
     .pipe(sass().on('error', sass.logError))

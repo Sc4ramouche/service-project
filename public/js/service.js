@@ -1,17 +1,15 @@
-/*eslint wrap-iife: false*/
-
 // setting up more comfortable work with localStorage
-Storage.prototype.setObj = function (key, obj) {
-  return this.setItem(key, JSON.stringify(obj, null, 2))
-}
-Storage.prototype.getObj = function (key) {
-  return JSON.parse(this.getItem(key))
-}
+Storage.prototype.setObj = function defineSet(key, obj) {
+  return this.setItem(key, JSON.stringify(obj, null, 2));
+};
+Storage.prototype.getObj = function defineGet(key) {
+  return JSON.parse(this.getItem(key));
+};
 
 const service = (function createServiceFunctions() {
 
   function transformDateForInput(date) {
-    let year = date.getFullYear();
+    const year = date.getFullYear();
 
     let month = date.getMonth() + 1;
     if (month < 10) month = '0' + month;
@@ -22,57 +20,64 @@ const service = (function createServiceFunctions() {
     return year + '-' + month + '-' + day + '';
   }
 
-  function add30Days(date) {
-    let plus30days = new Date(date.setDate(date.getDate() + 30));
-  }
-
   function openTab(evt, tabName) {
-    let tabcontent, tablinks;
-  
-    tabcontent = document.getElementsByClassName("tabs-item");
+    const tabcontent = document.getElementsByClassName('tabs-item');
     for (let i = 0; i < tabcontent.length; i++) {
-      tabcontent[i].style.display = "none";  
+      tabcontent[i].style.display = 'none';
     }
-  
-    tablinks = document.getElementsByClassName("tabs__button");
-    for (let i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-  
-    document.getElementsByClassName(tabName)[0].style.display = "block";
-    evt.currentTarget.className += " active";
-  }
 
-  function signOut() { 
-    localStorage.logged = "";
-    setHeaderUsername();
-    window.location.replace("./");
+    const tablinks = document.getElementsByClassName('tabs__button');
+    for (let i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(' active', '');
+    }
+
+    document.getElementsByClassName(tabName)[0].style.display = 'block';
+    evt.currentTarget.className += ' active';
   }
 
   function setHeaderUsername() {
-    let user = document.getElementsByClassName('header__user')[0];
-    let login = document.getElementsByClassName('login__button')[0];
-    let userName = document.getElementsByClassName('user__name')[0];
-    if ( localStorage.logged ) {
-      user.style.display = "block";
-      login.style.display = "none";
-      userName.textContent = "Greetings, " + localStorage.logged[0].toUpperCase() + localStorage.logged.slice(1) + "!";
+    const user = document.getElementsByClassName('header__user')[0];
+    const login = document.getElementsByClassName('login__button')[0];
+    const userName = document.getElementsByClassName('user__name')[0];
+
+    if (localStorage.logged) {
+      user.style.display = 'block';
+      login.style.display = 'none';
+      userName.textContent = 'Greetings, ' + localStorage.logged[0].toUpperCase() + localStorage.logged.slice(1) + '!';
     } else {
-      user.style.display = "none";
-      login.style.display = "block";
+      user.style.display = 'none';
+      login.style.display = 'block';
     }
   }
 
+  function signOut() {
+    localStorage.logged = '';
+    setHeaderUsername();
+    window.location.replace('./');
+  }
+
   function checkPhoneNumber(number) {
-    let myRe = /^\d\s[\(]\d{3}[\)]\s\d{3}[\-]\d{2}[\-]\d{2}$/;
+    const myRe = /^\d\s[(]\d{3}[)]\s\d{3}[-]\d{2}[-]\d{2}$/;
 
     return myRe.test(number);
   }
 
-  function writeServiceToTable(date, service, index) {
-    let whichTable = '';
+  function disableTableIfEmpty(table) {
+    if (table.getElementsByTagName('tr').length < 2) {
+      table.style.display = 'none';
+      if (table.classList.contains('upcoming__table')) {
+        document.getElementsByClassName('heading__upcoming')[0].style.display = 'none';
+      } else {
+        document.getElementsByClassName('heading__previous')[0].style.display = 'none';
+      }
+    }
+  }
 
-    if ( (new Date(date)).getDate() < (new Date()).getDate() ) {
+  function writeServiceToTable(date, serviceType, index) {
+    let whichTable = '';
+    let table;
+
+    if ((new Date(date)).getDate() < (new Date()).getDate()) {
       table = document.getElementsByClassName('previous__table')[0];
       whichTable = 'previous';
     } else {
@@ -80,27 +85,27 @@ const service = (function createServiceFunctions() {
       whichTable = 'upcoming';
     }
 
-    let row = table.insertRow(1);
-    let dateCell = row.insertCell(0);
-    let serviceCell = row.insertCell(1);
+    const row = table.insertRow(1);
+    const dateCell = row.insertCell(0);
+    const serviceCell = row.insertCell(1);
 
     dateCell.innerHTML = date;
-    serviceCell.innerHTML = service;
-    row.setAttribute("index", index);
+    serviceCell.innerHTML = serviceType;
+    row.setAttribute('index', index);
 
     if (whichTable === 'upcoming') {
-      let cancelCell = row.insertCell(2);
-      cancelCell.innerHTML = `<button type="button" class="cancel__button login__button--usual" id="${index}" onClick="session.cancelUpcomingVisits(this.id)">Cancel</button>`;
-      table.style.display = "table";
+      const cancelCell = row.insertCell(2);
+      cancelCell.innerHTML = `<button type='button' class='cancel__button login__button--usual' id='${index}' onClick='session.cancelUpcomingVisits(this.id)'>Cancel</button>`;
+      table.style.display = 'table';
     }
 
     if (whichTable === 'previous') {
-      table.style.display = "table";
+      table.style.display = 'table';
     }
 
-    row.classList.add("table__row");
-    dateCell.classList.add("table__cell");
-    serviceCell.classList.add("table__cell");
+    row.classList.add('table__row');
+    dateCell.classList.add('table__cell');
+    serviceCell.classList.add('table__cell');
   }
 
   function checkExistingServices() {
@@ -111,58 +116,61 @@ const service = (function createServiceFunctions() {
     disableTableIfEmpty(tableUpcoming);
   }
 
-  function disableTableIfEmpty(table) {
-    if (table.getElementsByTagName("tr").length < 2) {
-      table.style.display = "none";
-      if (table.classList.contains("upcoming__table")) {
-        document.getElementsByClassName("heading__upcoming")[0].style.display = "none";
-      } else {
-        document.getElementsByClassName("heading__previous")[0].style.display = "none";
+  function getRowToProcess(id) {
+    const tableRows = document.querySelectorAll('tr');
+    let rightTableRow;
+
+    for (let i = 0; i < tableRows.length; i++) {
+      if (tableRows[i].getAttribute('index') === id) {
+        //  tableRows[i].parentNode.removeChild(tableRows[i]);
+        rightTableRow = tableRows[i];
       }
     }
+
+    return rightTableRow;
   }
 
   function writeDataToEnsureModal(cancelButtonId) {
-    const cancelMessage = document.getElementsByClassName("ensure__message")[0];
-    tableRow = getRowToProcess(cancelButtonId);
+    const cancelMessage = document.getElementsByClassName('ensure__message')[0];
+    const tableRow = getRowToProcess(cancelButtonId);
 
     const date = tableRow.childNodes[0].innerHTML;
-    const service = tableRow.childNodes[1].innerHTML;
+    const serviceType = tableRow.childNodes[1].innerHTML;
 
-    cancelMessage.innerHTML = `Are you sure you want to cancel ${service} service at ${date}?`;
+    cancelMessage.innerHTML = `Are you sure you want to cancel ${serviceType} service at ${date}?`;
   }
 
   function evokeEnsureModal(id) {
     const ensureBtn = document.getElementById(id);
-    const modalClose = document.getElementsByClassName("modal__close")[1];
-    const ensureModal = document.getElementsByClassName("ensure__modal")[0];
-    const leaveButton = document.getElementsByClassName("leave__button")[0];
-  
-    ensureModal.setAttribute("cancelid", id);
-  
-    modalClose.onclick = function () {
-      ensureModal.style.display = "none";
+    const modalClose = document.getElementsByClassName('modal__close')[1];
+    const ensureModal = document.getElementsByClassName('ensure__modal')[0];
+    const leaveButton = document.getElementsByClassName('leave__button')[0];
+
+    ensureModal.setAttribute('cancelid', id);
+
+    modalClose.onclick = function closeModal() {
+      ensureModal.style.display = 'none';
     };
-  
-    ensureModal.style.display = "block";
-  
-    ensureBtn.onclick = function () {
-      ensureModal.style.display = "block";
-    }
-  
-    leaveButton.onclick = function () {
-      ensureModal.style.display = "none";
-    }
+
+    ensureModal.style.display = 'block';
+
+    ensureBtn.onclick = function openModal() {
+      ensureModal.style.display = 'block';
+    };
+
+    leaveButton.onclick = function closeModal() {
+      ensureModal.style.display = 'none';
+    };
   }
 
   function writeUserToLocalStorage(userObject) {
     if (localStorage.users === undefined) {
-      localStorage.users = "";
-      let temp = JSON.parse('[' + localStorage.users + ']');
+      localStorage.users = '';
+      const temp = JSON.parse('[' + localStorage.users + ']');
       temp.push(userObject);
       localStorage.setObj('users', temp);
     } else {
-      let temp = JSON.parse(localStorage.users);
+      const temp = JSON.parse(localStorage.users);
       temp.push(userObject);
       localStorage.setObj('users', temp);
     }
@@ -174,7 +182,7 @@ const service = (function createServiceFunctions() {
     if (usersArray[userId].services === undefined) usersArray[userId].services = [];
 
     usersArray[userId].services.push(serviceObj);
-    localStorage.setObj("users", usersArray);
+    localStorage.setObj('users', usersArray);
   }
 
   function removeFromLocalStorage(row) {
@@ -182,10 +190,10 @@ const service = (function createServiceFunctions() {
     const id = localStorage.currentUserId;
 
     const date = row.childNodes[0].innerHTML;
-    const service = row.childNodes[1].innerHTML;
+    const serviceType = row.childNodes[1].innerHTML;
 
     users[id].services.forEach((value, index) => {
-      if (value.service == service && value.date == date) {
+      if (value.service === serviceType && value.date === date) {
         users[id].services.splice(index, 1);
       }
     });
@@ -198,84 +206,58 @@ const service = (function createServiceFunctions() {
   }
 
   function hideTableIfLeftEmpty() {
-    const table = document.getElementsByClassName("upcoming__table")[0];
+    const table = document.getElementsByClassName('upcoming__table')[0];
 
-    if (table.rows.length < 2) table.style.display = "none";
+    if (table.rows.length < 2) table.style.display = 'none';
   }
 
   function checkUsernameErrors(username, uniqueUser) {
     if (username.length < 3) {
       const error = document.getElementsByClassName('register__error-username-short')[0];
-      error.style.display = "inline-block";
+      error.style.display = 'inline-block';
     } else if (!uniqueUser) {
       const error = document.getElementsByClassName('register__error-username')[0];
-      error.style.display = "inline-block";
+      error.style.display = 'inline-block';
     }
   }
 
   function checkEmailErrors(email, uniqueEmail) {
     if (email.length < 5) {
       const error = document.getElementsByClassName('register__error-email-short')[0];
-      error.style.display = "inline-block";
+      error.style.display = 'inline-block';
     } else if (!uniqueEmail) {
       const error = document.getElementsByClassName('register__error-email')[0];
-      error.style.display = "inline-block";
+      error.style.display = 'inline-block';
     }
   }
 
   function checkPasswordErrors(passwordMatch) {
     if (!passwordMatch) {
       const error = document.getElementsByClassName('register__error-match')[0];
-      error.style.display = "inline-block";
+      error.style.display = 'inline-block';
     }
   }
 
   function checkAgreementErrors(agreement) {
     if (!agreement) {
       const error = document.getElementsByClassName('register__error-agree')[0];
-      error.style.display = "inline-block";
-    }
-  }
-
-  function checkPasswordMatch(value) {
-    let pswMatch = document.getElementsByClassName('register__password-repeat')[0].value;
-    if (checkPasswordLength(value)) {
-      return (value === pswMatch);
-    } else {
-      const error = document.getElementsByClassName('register__error-password')[0];
-      error.style.display = "inline-block";
+      error.style.display = 'inline-block';
     }
   }
 
   function removeErrors() {
     const errors = document.getElementsByClassName('error');
     for (let i = 0; i < errors.length; i++) {
-      errors[i].style.display = "none";
-    };
-  }
-
-  function checkLoginErrors(usernameExists, usersArray, userId, userPassword, correctPassword) {
-    if (usernameExists) {
-      correctPassword = checkPassword(usersArray[userId].password, userPassword);
-    } else if (!usernameExists) {
-      const error = document.getElementsByClassName('login__error-email')[0];
-      error.style.display = "inline-block";
+      errors[i].style.display = 'none';
     }
-
-    if (!correctPassword && usernameExists) {
-      const error = document.getElementsByClassName('login__error-password')[0];
-      error.style.display = "inline-block";
-    }
-
-    return correctPassword;
   }
 
   function loggingIn(usernameOrEmail, userId) {
-    let headerUser = document.getElementsByClassName('user__name')[0];
+    const headerUser = document.getElementsByClassName('user__name')[0];
     headerUser.textContent = usernameOrEmail;
     localStorage.logged = usernameOrEmail;
     localStorage.currentUserId = userId;
-    window.location.href = "./account";
+    window.location.href = './account';
   }
 
   function checkPasswordLength(value) {
@@ -283,110 +265,113 @@ const service = (function createServiceFunctions() {
   }
 
   function checkUsernameExists(value, usr) {
-    return (value === usr) ? true : false;
+    return (value === usr);
   }
 
   function checkEmailExists(value, mail) {
-    return (value === mail) ? true : false;
+    return (value === mail);
   }
 
   function checkPassword(value, psw) {
-    return (value === psw) ? true : false;
+    return (value === psw);
   }
 
-  function errorUser() {
-    return usernameExist ? true : false;
+  function checkPasswordMatch(value) {
+    const pswMatch = document.getElementsByClassName('register__password-repeat')[0].value;
+    if (checkPasswordLength(value)) {
+      return (value === pswMatch);
+    }
+    const error = document.getElementsByClassName('register__error-password')[0];
+    error.style.display = 'inline-block';
+    return false;
   }
 
-  function errorPassword() {
-    return correctPassword ? true : false;
-  }
-
-  function getRowToProcess(id) {
-    const tableRows = document.querySelectorAll('tr');
-    let rightTableRow;
-
-    for (let i = 0; i < tableRows.length; i++) {
-      if (tableRows[i].getAttribute("index") === id) {
-        //  tableRows[i].parentNode.removeChild(tableRows[i]);
-        rightTableRow = tableRows[i];
-      }
+  function checkLoginErrors(usernameExists, usersArray, userId, userPassword, correctPassword) {
+    if (usernameExists) {
+      correctPassword = checkPassword(usersArray[userId].password, userPassword);
+    } else if (!usernameExists) {
+      const error = document.getElementsByClassName('login__error-email')[0];
+      error.style.display = 'inline-block';
     }
 
-    return rightTableRow;
+    if (!correctPassword && usernameExists) {
+      const error = document.getElementsByClassName('login__error-password')[0];
+      error.style.display = 'inline-block';
+    }
+
+    return correctPassword;
   }
 
   function responsive() {
-    let x = document.getElementsByClassName("nav__list")[0];
-    if (x.classList.contains("nav__list")) {
-      x.classList.toggle("responsive");
+    const x = document.getElementsByClassName('nav__list')[0];
+    if (x.classList.contains('nav__list')) {
+      x.classList.toggle('responsive');
     }
   }
 
   function createTestUsers() {
-
     const fakeUsers = [
       {
-        username: "kristine",
-        email: "Kristie1992@fake.com",
-        password: "qwerty",
-        phone: "9 (333) 111-22-33",
+        username: 'kristine',
+        email: 'Kristie1992@fake.com',
+        password: 'qwerty',
+        phone: '9 (333) 111-22-33',
         services: [
           {
-            service: "Massage",
-            date: "2018-02-14"
+            service: 'Massage',
+            date: '2018-02-14',
           },
           {
-            service: "Makeup & Waxing",
-            date: "2018-03-18"
-          }
-        ]
+            service: 'Makeup & Waxing',
+            date: '2018-03-18',
+          },
+        ],
       },
       {
-        username: "cutiegirl",
-        email: "dramaqueen@fake.com",
-        password: "shinyone",
-        phone: "9 (555) 666-78-12",
+        username: 'cutiegirl',
+        email: 'dramaqueen@fake.com',
+        password: 'shinyone',
+        phone: '9 (555) 666-78-12',
         services: [
           {
-            service: "Body Treatments",
-            date: "2018-02-16"
+            service: 'Body Treatments',
+            date: '2018-02-16',
           },
           {
-            service: "Makeup & Waxing",
-            date: "2018-03-20"
+            service: 'Makeup & Waxing',
+            date: '2018-03-20',
           },
           {
-            service: "Facials",
-            date: "2018-04-15"
+            service: 'Facials',
+            date: '2018-04-15',
           },
           {
-            service: "Massage",
-            date: "2018-04-06"
-          }
-        ]
+            service: 'Massage',
+            date: '2018-04-06',
+          },
+        ],
       },
       {
-        username: "adam",
-        email: "coolguy@fake.com",
-        password: "skull",
-        phone: "9 (577) 126-76-34",
+        username: 'adam',
+        email: 'coolguy@fake.com',
+        password: 'skull',
+        phone: '9 (577) 126-76-34',
         services: [
           {
-            service: "Facials",
-            date: "2018-02-16"
+            service: 'Facials',
+            date: '2018-02-16',
           },
           {
-            service: "Massage",
-            date: "2018-04-13"
-          }
-        ]
-      }
-    ]
+            service: 'Massage',
+            date: '2018-04-13',
+          },
+        ],
+      },
+    ];
 
     if (localStorage.users === undefined) {
-      localStorage.users = "";
-      let temp = JSON.parse('[' + localStorage.users + ']');
+      localStorage.users = '';
+      const temp = JSON.parse('[' + localStorage.users + ']');
 
       fakeUsers.forEach((value) => {
         temp.push(value);
@@ -394,7 +379,7 @@ const service = (function createServiceFunctions() {
 
       localStorage.setObj('users', temp);
     } else {
-      let temp = JSON.parse(localStorage.users);
+      const temp = JSON.parse(localStorage.users);
 
       fakeUsers.forEach((value) => {
         temp.push(value);
@@ -406,7 +391,6 @@ const service = (function createServiceFunctions() {
 
   return {
     transformDateForInput,
-    add30Days,
     openTab,
     signOut,
     setHeaderUsername,
@@ -433,10 +417,8 @@ const service = (function createServiceFunctions() {
     checkUsernameExists,
     checkEmailExists,
     checkPassword,
-    errorUser,
-    errorPassword,
     getRowToProcess,
     responsive,
-    createTestUsers
-  }
+    createTestUsers,
+  };
 })();
