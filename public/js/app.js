@@ -13,11 +13,12 @@ const session = (function createSession() {
     const agreement = document.getElementsByClassName('register__agree')[0].checked;
 
     if (users !== null) {
-      users.forEach((value, index) => {
-        for (let key in value) {
-          if (key === 'username' && value[key] === userName) uniqueUser = false;
-          if (key === 'email' && userEmail === value[key]) uniqueEmail = false;
-          if (key === 'password') passwordMatch = service.checkPasswordMatch(userPassword);
+      users.forEach((value) => {
+        const keys = Object.keys(value);
+        for (let i = 0; i < keys.length; i++) {
+          if (keys[i] === 'username' && value[keys[i]] === userName) uniqueUser = false;
+          if (keys[i] === 'email' && value[keys[i]] === userEmail) uniqueEmail = false;
+          if (keys[i] === 'password') passwordMatch = service.checkPasswordMatch(userPassword);
         }
       });
     } else {
