@@ -108,6 +108,17 @@ const service = (function createServiceFunctions() {
     serviceCell.classList.add('table__cell');
   }
 
+  function checkReservationDate(inputDate) {
+    const currentDate = new Date();
+    let plus30Days = new Date();
+    plus30Days.setDate(plus30Days.getDate() + 30);
+    const passedDate = new Date(inputDate);
+
+    if (passedDate < currentDate || passedDate > plus30Days) return false;
+
+    return true;
+  }
+
   function checkExistingServices() {
     const tablePrevious = document.getElementsByClassName('previous__table')[0];
     const tableUpcoming = document.getElementsByClassName('upcoming__table')[0];
@@ -420,5 +431,6 @@ const service = (function createServiceFunctions() {
     getRowToProcess,
     responsive,
     createTestUsers,
+    checkReservationDate,
   };
 })();

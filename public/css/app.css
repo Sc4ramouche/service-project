@@ -105,7 +105,8 @@ table {
 .register__error-password,
 .register__error-match,
 .register__error-agree,
-.reserve__fill-error {
+.reserve__fill-error,
+.reserve__date-error {
   display: none;
   text-align: center; }
 

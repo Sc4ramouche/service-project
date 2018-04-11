@@ -90,7 +90,11 @@ const session = (function createSession() {
       date: document.getElementsByClassName('reserve__date')[0].value,
     };
 
-    if (service.checkPhoneNumber(phoneNumber) && serviceItem.date !== '') {
+    if (!service.checkReservationDate(serviceItem.date)) {
+      document.getElementsByClassName('reserve__date-error')[0].style.display = "block";
+    }
+
+    if (service.checkPhoneNumber(phoneNumber) && service.checkReservationDate(serviceItem.date)) {
       service.writeReservationToLocalStorage(users, id, phoneNumber, serviceItem);
       session.updateUpcomingVisits();
 
